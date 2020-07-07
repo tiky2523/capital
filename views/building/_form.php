@@ -11,14 +11,20 @@ use yii\widgets\ActiveForm;
 <div class="building-form">
 
     <?php $form = ActiveForm::begin(); ?>
-
-    <?= $form->field($model, 'bud_type')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'f_year')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'd_type')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'hcode')->textInput(['maxlength' => true]) ?>
+    <div class="row">
+        <div class="col-xs-3 col-sm-3 col-md-3">
+            <?= $form->field($model, 'bud_type')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3">
+            <?= $form->field($model, 'f_year')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3">
+            <?= $form->field($model, 'd_type')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3">
+            <?= $form->field($model, 'hcode')->textInput(['maxlength' => true]) ?>
+        </div>
+    </div>
 
     <?= $form->field($model, 'hname')->textInput(['maxlength' => true]) ?>
 
