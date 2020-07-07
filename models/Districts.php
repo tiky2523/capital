@@ -44,11 +44,20 @@ class Districts extends \yii\db\ActiveRecord
     {
         return [
             'DISTRICT_ID' => 'District ID',
-            'DISTRICT_CODE' => 'District Code',
-            'DISTRICT_NAME' => 'District Name',
+            'DISTRICT_CODE' => 'รหัสตำบล',
+            'DISTRICT_NAME' => 'ชื่อตำบล',
             'AMPHUR_ID' => 'Amphur ID',
             'PROVINCE_ID' => 'Province ID',
             'GEO_ID' => 'Geo ID',
         ];
+    }
+    public function getBuilding(){
+        return $this->hasMany(Building::className(), ['tumbon'=>'DISTRICT_COME']);
+    }
+     public function getAmphures(){
+        return $this->hasone(Amphures::className(), ['AMPHUR_ID'=>'AMPHUR_ID']);
+    }
+    public function getProvinces(){
+        return $this->hasone(Provinces::className(), ['PROVINCE_ID'=>'PROVINCE_ID']);
     }
 }

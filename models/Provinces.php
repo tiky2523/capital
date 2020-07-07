@@ -47,4 +47,10 @@ class Provinces extends \yii\db\ActiveRecord
             'GEO_ID' => 'Geo ID',
         ];
     }
+    public function getAmphures(){
+        return $this->hasMany(Amphures::className(), ['PROVINCE_ID'=>'PROVINCE_ID']);
+    }
+    public function getDistricts(){
+        return $this->hasMany(Districts::className(), ['PROVINCE_ID'=>'PROVINCE_ID']);
+    }
 }

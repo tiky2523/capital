@@ -45,4 +45,7 @@ class CBuild extends \yii\db\ActiveRecord
             'l_name' => 'ชื่อสิ่งก่อสร้างแบบยาว',
         ];
     }
+    public function getBuilding(){
+        return $this->hasMany(Building::className(), ['b_tpye'=>'code_b']);
+    }
 }

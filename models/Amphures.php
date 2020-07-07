@@ -45,11 +45,17 @@ class Amphures extends \yii\db\ActiveRecord
     {
         return [
             'AMPHUR_ID' => 'Amphur ID',
-            'AMPHUR_CODE' => 'Amphur Code',
-            'AMPHUR_NAME' => 'Amphur Name',
-            'POSTCODE' => 'Postcode',
+            'AMPHUR_CODE' => 'รหัสอำเภอ',
+            'AMPHUR_NAME' => 'ชื่ออำเภอ',
+            'POSTCODE' => 'รหัสไปรษณีย์',
             'GEO_ID' => 'Geo ID',
             'PROVINCE_ID' => 'Province ID',
         ];
+    }
+    public function getBuilding(){
+        return $this->hasMany(Building::className(), ['amphur'=>'AMPHUR_COME']);
+    }
+    public function getProvinces(){
+        return $this->hasone(Provinces::className(), ['PROVINCE_ID'=>'PROVINCE_ID']);
     }
 }

@@ -57,4 +57,7 @@ class CHos extends \yii\db\ActiveRecord
             'moo' => 'รหัสหมู่',
         ];
     }
+    public function getBuilding(){
+        return $this->hasMany(Building::className(), ['hcode'=>'code5']);
+    }
 }

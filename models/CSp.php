@@ -43,4 +43,7 @@ class CSp extends \yii\db\ActiveRecord
             'sp_name' => 'ชื่อประเภทสิ่งก่อสร้างแบบสั้น',
         ];
     }
+    public function getBuilding(){
+        return $this->hasMany(Building::className(), ['hos_lev'=>'code_sp']);
+    }
 }

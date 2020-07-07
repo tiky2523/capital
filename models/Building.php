@@ -119,4 +119,19 @@ class Building extends \yii\db\ActiveRecord
             'd_update' => 'วันที่ปรับปรุงข้อมูล',
         ];
     }
+    public function getCHos(){
+        return $this->hasone(CHos::className(), ['code5'=>'hcode']);
+    }
+    public function getCSp(){
+        return $this->hasone(CSp::className(), ['code_sp'=>'hos_lev']);
+    }
+    public function getCBuild(){
+        return $this->hasone(CBuild::className(), ['code_b'=>'b_type']);
+    }
+    public function getDistricts(){
+        return $this->hasone(Districts::className(), ['DISTRICT_CODE'=>'tumbon']);
+    }
+    public function getAmphures(){
+        return $this->hasone(Amphures::className(), ['AMPHUR_CODE'=>'amphur']);
+    }
 }
