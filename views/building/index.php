@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\BuildingSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Buildings';
+$this->title = 'คำขอสิ่งก่อสร้าง';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="building-index">

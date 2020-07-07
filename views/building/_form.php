@@ -26,35 +26,62 @@ use yii\widgets\ActiveForm;
         </div>
     </div>
 
-    <?= $form->field($model, 'hname')->textInput(['maxlength' => true]) ?>
+    <div class="row">
+        <div class="col-xs-4 col-sm-4 col-md-4">
+            <?= $form->field($model, 'hname')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2">
+            <?= $form->field($model, 'rank_cup')->textInput() ?>
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2">
+            <?= $form->field($model, 'rank_sso')->textInput() ?>
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2">
+            <?= $form->field($model, 'rank_hos')->textInput() ?>
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2">
+            <?= $form->field($model, 'rank_CR')->textInput() ?>
+        </div>
 
-    <?= $form->field($model, 'rank_cup')->textInput() ?>
+    </div>
 
-    <?= $form->field($model, 'rank_sso')->textInput() ?>
+    <div class="row">
+        <div class="col-xs-6 col-sm-6 col-md-6">
+            <?= $form->field($model, 'b_list')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2">
+            <?= $form->field($model, 'b_type')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2">
+            <?= $form->field($model, 'p_type')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2">
+            <?= $form->field($model, 'p_no')->textInput(['maxlength' => true]) ?>
+        </div>
+    </div>
 
-    <?= $form->field($model, 'rank_hos')->textInput() ?>
+    <div class="row">
+        <div class="col-xs-2 col-sm-2 col-md-2">
+            <?= $form->field($model, 'u_price')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2">
+            <?= $form->field($model, 'unit_no')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2">
+            <?= $form->field($model, 'b_binding1')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2">
+            <?= $form->field($model, 'b_binding2')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2">
+            <?= $form->field($model, 'b_binding3')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2">
+            <?= $form->field($model, 't_budget')->textInput(['maxlength' => true]) ?>
+        </div>
+    </div>
 
-    <?= $form->field($model, 'rank_CR')->textInput() ?>
 
-    <?= $form->field($model, 'b_list')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'b_type')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'p_type')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'p_no')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'u_price')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'unit_no')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'b_binding1')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'b_binding2')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'b_binding3')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 't_budget')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'b_locate')->textInput(['maxlength' => true]) ?>
 
@@ -63,6 +90,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'tumbon')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'hos_lev')->textInput(['maxlength' => true]) ?>
+    
 
     <?= $form->field($model, 't_build')->textInput(['maxlength' => true]) ?>
 
