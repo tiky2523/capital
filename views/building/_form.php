@@ -39,10 +39,14 @@ use app\models\CHos;
             ],['prompt'=>'เลือกปีงบประมาณ...']) ?>
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3">
-            <?= $form->field($model, 'hcode')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'd_type')->dropDownList([
+                '1'=>'รพศ/รพท/รพช',
+                '2'=>'รพ.สต./ศสม.',
+                '3'=>'สสจ/สสอ.',
+            ],['prompt'=>'เลือกประเภทหน่วยงาน...']) ?>
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3">
-            <?= $form->field($model, 'd_type')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'hcode')->textInput(['maxlength' => true]) ?>
         </div>
     </div>
 
