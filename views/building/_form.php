@@ -39,14 +39,7 @@ use app\models\CHos;
             ],['prompt'=>'เลือกปีงบประมาณ...']) ?>
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3">
-            <?= $form->field($model, 'hcode')->widget(Select2::classname(),[
-                'data'= ArrayHelper::map(app\models\CHos::find()->all(),'code5','hospital'),
-                'language'=>'th',
-                'options'=>['placeholder'=>'เลือกรหัสสถานบริการ'],
-                'pluginOptions'=>[
-                    'allowClear'=>ture
-                ],
-            ]); ?>
+            <?= $form->field($model, 'hcode')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3">
             <?= $form->field($model, 'd_type')->textInput(['maxlength' => true]) ?>
