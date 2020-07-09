@@ -1,11 +1,12 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
-use kartik\select2\Select2;
+use kartik\widgets\Select2;
+use kartik\depdrop\DepDrop;
 use app\models\CHos;
-
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Building */
@@ -17,42 +18,66 @@ use app\models\CHos;
     <?php $form = ActiveForm::begin(); ?>
     <div class="row">
         <div class="col-xs-3 col-sm-3 col-md-3">
-            <?= $form->field($model, 'bud_type')->dropDownList([
-                'งบลงทุน'=>'งบลงทุน',
-                'งบค่าเสื่อม'=>'งบค่าเสื่อม',
-            ],['prompt'=>'เลือกประเภทงบประมาณ...']) ?>
+            <?=
+            $form->field($model, 'bud_type')->dropDownList([
+                '1' => 'งบลงทุน',
+                '2' => 'งบค่าเสื่อม',
+                    ], ['prompt' => 'เลือกประเภทงบประมาณ...'])
+            ?>
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3">
-            <?= $form->field($model, 'f_year')->dropDownList([
-                '2564'=>'2564',
-                '2565'=>'2565',
-                '2566'=>'2566',
-                '2567'=>'2567',
-                '2568'=>'2568',
-                '2569'=>'2569',
-                '2570'=>'2570',
-                '2571'=>'2571',
-                '2572'=>'2572',
-                '2573'=>'2573',
-                '2574'=>'2574',
-                '2575'=>'2575',
-            ],['prompt'=>'เลือกปีงบประมาณ...']) ?>
+            <?=
+            $form->field($model, 'f_year')->dropDownList([
+                '2564' => '2564',
+                '2565' => '2565',
+                '2566' => '2566',
+                '2567' => '2567',
+                '2568' => '2568',
+                '2569' => '2569',
+                '2570' => '2570',
+                '2571' => '2571',
+                '2572' => '2572',
+                '2573' => '2573',
+                '2574' => '2574',
+                '2575' => '2575',
+                    ], ['prompt' => 'เลือกปีงบประมาณ...'])
+            ?>
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3">
-            <?= $form->field($model, 'd_type')->dropDownList([
-                '1'=>'รพศ/รพท/รพช',
-                '2'=>'รพ.สต./ศสม.',
-                '3'=>'สสจ/สสอ.',
-            ],['prompt'=>'เลือกประเภทหน่วยงาน...']) ?>
+            <?=
+            $form->field($model, 'd_type')->dropDownList([
+                '1' => 'รพศ/รพท/รพช',
+                '2' => 'รพ.สต./ศสม.',
+                '3' => 'สสจ/สสอ.',
+                    ], ['prompt' => 'เลือกประเภทหน่วยงาน...'])
+            ?>
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3">
-            <?= $form->field($model, 'hcode')->textInput(['maxlength' => true]) ?>
+            <?=
+            $form->field($model, 'hcode')->widget(Select2::classname(), [
+                'data' => ArrayHelper::map(app\models\CHos::find()->all(), 
+                        'code5', 'code5'),
+                'language' => 'th',
+                'options' => ['placeholder' => ' ...'],
+                'pluginOptions' => [
+                    'allowClear' => true
+                ],
+            ]);
+            ?>
         </div>
     </div>
 
     <div class="row">
         <div class="col-xs-4 col-sm-4 col-md-4">
-            <?= $form->field($model, 'hname')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'hname')->widget(Select2::classname(), [
+                'data' => ArrayHelper::map(app\models\CHos::find()->all(), 'code5', 'hospital'),
+                'language' => 'th',
+                'options' => ['placeholder' => 'เลือกชื่อหน่วยงาน...'],
+                'pluginOptions' => [
+                    'allowClear' => true
+                ],
+            ]);        
+            ?>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2">
             <?= $form->field($model, 'rank_cup')->textInput() ?>
@@ -71,49 +96,61 @@ use app\models\CHos;
 
     <div class="row">
         <div class="col-xs-6 col-sm-6 col-md-6">
-            <?= $form->field($model, 'b_list')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 'b_list')->textarea(['row' => 6]) ?>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2">
-            <?= $form->field($model, 'b_type')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 'b_type')->widget(Select2::classname(), [
+                'data' => ArrayHelper::map(app\models\CBuild::find()->all(), 'code_b', 's_name'),
+                'language' => 'th',
+                'options' => ['placeholder' => 'เลือกประเภทอาคารสิ่งก่อสร้าง...'],
+                'pluginOptions' => [
+                    'allowClear' => true
+                ],
+            ]);
+            ?>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2">
-            <?= $form->field($model, 'p_type')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 'p_type')->dropDownList([
+                '1' => 'แบบมาตรฐานกองแบบ',
+                '2' => 'แบบที่ออกแบบเอง',
+                    ], ['prompt' => 'เลือกประเภทแบบแปลน...'])
+            ?>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2">
-            <?= $form->field($model, 'p_no')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 'p_no')->textInput(['maxlength' => true]) ?>
         </div>
     </div>
 
     <div class="row">
         <div class="col-xs-2 col-sm-2 col-md-2">
-            <?= $form->field($model, 'u_price')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 'u_price')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2">
-            <?= $form->field($model, 'unit_no')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 'unit_no')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2">
-            <?= $form->field($model, 'b_binding1')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 'b_binding1')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2">
-            <?= $form->field($model, 'b_binding2')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 'b_binding2')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2">
-            <?= $form->field($model, 'b_binding3')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 'b_binding3')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2">
-            <?= $form->field($model, 't_budget')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 't_budget')->textInput(['maxlength' => true]) ?>
         </div>
     </div>
 
     <div class="row">
         <div class="col-xs-4 col-sm-4 col-md-4">
-            <?= $form->field($model, 'b_locate')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 'b_locate')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2">
-            <?= $form->field($model, 'amphur')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 'amphur')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2">
-            <?= $form->field($model, 'tumbon')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 'tumbon')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2">
             <?= $form->field($model, 'hos_lev')->textInput(['maxlength' => true]) ?>
@@ -124,22 +161,22 @@ use app\models\CHos;
     </div>
     <div class="row">
         <div class="col-xs-6 col-sm-6 col-md-6">
-            <?= $form->field($model, 'reason')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 'reason')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2">
-            <?= $form->field($model, 'l_time')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 'l_time')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2">
-            <?= $form->field($model, 'pop')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 'pop')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2">
-            <?= $form->field($model, 'opd_visit')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 'opd_visit')->textInput(['maxlength' => true]) ?>
         </div>
     </div>
 
     <div class="row">
         <div class="col-xs-2 col-sm-2 col-md-2">
-            <?= $form->field($model, 'active_bed')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 'active_bed')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2">
             <?= $form->field($model, 'SUM_AdjRw')->textInput(['maxlength' => true]) ?>
@@ -150,10 +187,10 @@ use app\models\CHos;
     </div>
     <div class="row">
         <div class="col-xs-8 col-sm-8 col-md-8">
-            <?= $form->field($model, 'ES')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 'ES')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2">
-            <?= $form->field($model, 'PCC')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 'PCC')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2">
             <?= $form->field($model, 'Famine')->textInput(['maxlength' => true]) ?>
@@ -163,20 +200,20 @@ use app\models\CHos;
 
     <div class="row">
         <div class="col-xs-8 col-sm-8 col-md-8">
-            <?= $form->field($model, 'new_b')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 'new_b')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2">
-            <?= $form->field($model, 'personels')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'personels')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2">
-            <?= $form->field($model, 'd_update')->textInput() ?>
+    <?= $form->field($model, 'd_update')->textInput() ?>
         </div>
     </div>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+<?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
 
-    <?php ActiveForm::end(); ?>
+<?php ActiveForm::end(); ?>
 
 </div>
