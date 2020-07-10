@@ -55,10 +55,10 @@ use app\models\CHos;
         <div class="col-xs-3 col-sm-3 col-md-3">
             <?=
             $form->field($model, 'hcode')->widget(Select2::classname(), [
-                'data' => ArrayHelper::map(app\models\CHos::find()->all(), 
+                'data' => ArrayHelper::map(app\models\CHos::find()->orderBy(['code5' => SORT_ASC])->all(), 
                         'code5', 'code5'),
                 'language' => 'th',
-                'options' => ['placeholder' => ' ...'],
+                'options' => ['placeholder' => ' เลือกรหัสหน่วยงาน...'],
                 'pluginOptions' => [
                     'allowClear' => true
                 ],
@@ -70,7 +70,8 @@ use app\models\CHos;
     <div class="row">
         <div class="col-xs-4 col-sm-4 col-md-4">
             <?= $form->field($model, 'hname')->widget(Select2::classname(), [
-                'data' => ArrayHelper::map(app\models\CHos::find()->all(), 'code5', 'hospital'),
+                'data' => ArrayHelper::map(app\models\CHos::find()->orderBy(['code5' => SORT_ASC])->
+                        all(), 'code5', 'hospital'),
                 'language' => 'th',
                 'options' => ['placeholder' => 'เลือกชื่อหน่วยงาน...'],
                 'pluginOptions' => [
@@ -100,7 +101,8 @@ use app\models\CHos;
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2">
 <?= $form->field($model, 'b_type')->widget(Select2::classname(), [
-                'data' => ArrayHelper::map(app\models\CBuild::find()->all(), 'code_b', 's_name'),
+                'data' => ArrayHelper::map(app\models\CBuild::find()->
+                        orderBy(['code_b' => SORT_ASC])->all(), 'code_b', 's_name'),
                 'language' => 'th',
                 'options' => ['placeholder' => 'เลือกประเภทอาคารสิ่งก่อสร้าง...'],
                 'pluginOptions' => [

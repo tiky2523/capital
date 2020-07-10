@@ -7,18 +7,24 @@ use app\models\Building;
 use app\models\BuildingSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\UploadedFile;
 use yii\filters\VerbFilter;
+use yii\helpers\Json;
+use yii\helpers\ArrayHelper;
+use yii\helpers\BaseFileHelper;
+use app\models\CHos;
+use yii\helpers\Html;
+use yii\helpers\Url;
 
 /**
  * BuildingController implements the CRUD actions for Building model.
  */
-class BuildingController extends Controller
-{
+class BuildingController extends Controller {
+
     /**
      * {@inheritdoc}
      */
-    public function behaviors()
-    {
+    public function behaviors() {
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
@@ -33,14 +39,13 @@ class BuildingController extends Controller
      * Lists all Building models.
      * @return mixed
      */
-    public function actionIndex()
-    {
+    public function actionIndex() {
         $searchModel = new BuildingSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -50,10 +55,9 @@ class BuildingController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
-    {
+    public function actionView($id) {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+                    'model' => $this->findModel($id),
         ]);
     }
 
@@ -62,8 +66,7 @@ class BuildingController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
-    {
+    public function actionCreate() {
         $model = new Building();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -71,7 +74,7 @@ class BuildingController extends Controller
         }
 
         return $this->render('create', [
-            'model' => $model,
+                    'model' => $model,
         ]);
     }
 
@@ -82,16 +85,17 @@ class BuildingController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
-    {
+    public function actionUpdate($id) {
         $model = $this->findModel($id);
+        $code5= ArrayHelper::map($this->getChos($model->hcode),'code5','hospital');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id_building]);
         }
 
         return $this->render('update', [
-            'model' => $model,
+                    'model' => $model,
+                    'code5'=>$code5
         ]);
     }
 
@@ -102,8 +106,7 @@ class BuildingController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
-    {
+    public function actionDelete($id) {
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
@@ -116,12 +119,39 @@ class BuildingController extends Controller
      * @return Building the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
-    {
+    protected function findModel($id) {
         if (($model = Building::findOne($id)) !== null) {
             return $model;
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
+    public function actionGetChos() {
+        $out = [];
+        if (isset($_POST['depdrop_parents'])) {
+            $parents = $_POST['depdrop_parents'];
+            if ($parents != NULL) {
+                $code5 = $parents[0];
+                $out = $this->getChos($code5);
+                echo Json::encode(['output' => $out, 'selected' => '']);
+                return;
+            }
+        }
+        echo Json::encode(['output' => '', 'selected' => '']);
+    }
+
+    protected function getChos($id) {
+        $datas = CHos::find()->where(['code5' => $id])->all();
+        return $this->MapData($datas, 'code5', 'hospital');
+    }
+
+    protected function MapData($datas, $fieldId, $fieldName) {
+        $obj = [];
+        foreach ($datas as $key => $value) {
+            array_push($obj, ['id' => $value->{$fieldId}, 'name' => $value->{$fieldName}]);
+        }
+        return $obj;
+    }
+
 }
