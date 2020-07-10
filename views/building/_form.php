@@ -6,6 +6,7 @@ use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use kartik\widgets\Select2;
 use kartik\depdrop\DepDrop;
+use kartik\number\NumberControl;
 use app\models\CHos;
 
 /* @var $this yii\web\View */
@@ -125,22 +126,57 @@ use app\models\CHos;
 
     <div class="row">
         <div class="col-xs-2 col-sm-2 col-md-2">
-<?= $form->field($model, 'u_price')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 'u_price')->widget(NumberControl::classname(), [
+    'maskedInputOptions' => [
+        'prefix' => ' ',
+        'suffix' => ' ',
+        'allowMinus' => false
+    ]
+
+]); ?>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2">
 <?= $form->field($model, 'unit_no')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2">
-<?= $form->field($model, 'b_binding1')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 'b_binding1')->widget(NumberControl::classname(), [
+    'maskedInputOptions' => [
+        'prefix' => ' ',
+        'suffix' => ' ',
+        'allowMinus' => false
+    ]
+
+]); ?>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2">
-<?= $form->field($model, 'b_binding2')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 'b_binding2')->widget(NumberControl::classname(), [
+    'maskedInputOptions' => [
+        'prefix' => ' ',
+        'suffix' => ' ',
+        'allowMinus' => false
+    ]
+
+]); ?>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2">
-<?= $form->field($model, 'b_binding3')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 'b_binding3')->widget(NumberControl::classname(), [
+    'maskedInputOptions' => [
+        'prefix' => ' ',
+        'suffix' => ' ',
+        'allowMinus' => false
+    ]
+
+]); ?>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2">
-<?= $form->field($model, 't_budget')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 't_budget')->widget(NumberControl::classname(), [
+    'maskedInputOptions' => [
+        'prefix' => ' ',
+        'suffix' => ' ',
+        'allowMinus' => false
+    ]
+
+]); ?>
         </div>
     </div>
 

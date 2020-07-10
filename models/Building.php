@@ -70,6 +70,7 @@ class Building extends \yii\db\ActiveRecord
             [['b_binding1', 'b_binding2', 'b_binding3', 't_budget'], 'string', 'max' => 20],
             [['b_locate', 'amphur', 'tumbon'], 'string', 'max' => 25],
             [['pop', 'opd_visit', 'active_bed', 'SUM_AdjRw'], 'string', 'max' => 10],
+            [['pop', 'opd_visit', 'active_bed', 'SUM_AdjRw'], 'string', 'max' => 10],
         ];
     }
 
