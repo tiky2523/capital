@@ -7,6 +7,7 @@ use yii\helpers\ArrayHelper;
 use kartik\widgets\Select2;
 use kartik\depdrop\DepDrop;
 use kartik\number\NumberControl;
+use yii\jui\DatePicker;
 use app\models\CHos;
 
 /* @var $this yii\web\View */
@@ -185,25 +186,28 @@ use app\models\CHos;
 <?= $form->field($model, 'b_locate')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2">
-<?= $form->field($model, 'amphur')->dropdownList(
-            ArrayHelper::map(\app\models\Amphures::find()->all(),
-                    'AMPHUR_ID', 
-                    'AMPHUR_NAME'),
-            [
-                'id'=>'ddl-amphur',
-                'prompt'=>'เลือกอำเภอ....'
-]); ?>
+<?= $form->field($model, 'amphur')->widget(Select2::classname(), [
+                'data' => ArrayHelper::map(app\models\Amphures::find()->orderBy(['AMPHUR_ID' => SORT_ASC])->all(), 
+                        'AMPHUR_ID', 'AMPHUR_NAME'),
+                'language' => 'th',
+                'options' => ['placeholder' => ' เลือกอำเภอ...'],
+                'pluginOptions' => [
+                    'allowClear' => true
+                ],
+            ]);
+            ?>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2">
-<?= $form->field($model, 'tumbon')->widget(DepDrop::classname(), [
-            'options'=>['id'=>'building-tumbon'],
-            'data'=> $district,
-            'pluginOptions'=>[
-                'depends'=>['ddl-amphur'],
-                'placeholder'=>'เลือกตำบล...',
-                'url'=>Url::to(['/building/get-district'])
-            ]
-        ]); ?>
+<?= $form->field($model, 'tumbon')->widget(Select2::classname(), [
+                'data' => ArrayHelper::map(app\models\Districts::find()->orderBy(['DISTRICT_ID' => SORT_ASC])->all(), 
+                        'DISTRICT_ID', 'DISTRICT_NAME'),
+                'language' => 'th',
+                'options' => ['placeholder' => ' เลือกตำบล...'],
+                'pluginOptions' => [
+                    'allowClear' => true
+                ],
+            ]);
+            ?>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2">
             <?= $form->field($model, 'hos_lev')->dropdownList(
@@ -311,7 +315,17 @@ use app\models\CHos;
         <?= $form->field($model, 'personels')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2">
-    <?= $form->field($model, 'd_update')->textInput() ?>
+    <?= $form->field($model, 'd_update')->widget(DatePicker::className(), [
+                'language' => 'th',
+                'dateFormat' => 'yyyy-MM-dd ',
+                'clientOptions' => [
+                    'changeMonth' => true,
+                    'changeYear' => true,
+                ],
+                'options' => ['class' => 'form-control'
+                ],
+            ]);
+            ?>
         </div>
     </div>
 

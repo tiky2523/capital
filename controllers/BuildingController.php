@@ -89,15 +89,14 @@ class BuildingController extends Controller {
      */
     public function actionUpdate($id) {
         $model = $this->findModel($id);
-        $code5= ArrayHelper::map($this->getChos($model->hcode),'code5','hospital');
-        $district       = ArrayHelper::map($this->getDistrict($model->amphur),'id','name');
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id_building]);
         }
 
         return $this->render('update', [
                     'model' => $model,
-                    'district' =>$district
+                   
         ]);
     }
 
@@ -128,48 +127,6 @@ class BuildingController extends Controller {
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+ 
 
-    public function actionGetChos() {
-        $out = [];
-        if (isset($_POST['depdrop_parents'])) {
-            $parents = $_POST['depdrop_parents'];
-            if ($parents != NULL) {
-                $code5 = $parents[0];
-                $out = $this->getChos($code5);
-                echo Json::encode(['output' => $out, 'selected' => '']);
-                return;
-            }
-        }
-        echo Json::encode(['output' => '', 'selected' => '']);
-    }
-
-    protected function getChos($id) {
-        $datas = CHos::find()->where(['code5' => $id])->all();
-        return $this->MapData($datas, 'code5', 'hospital');
-    }
-
-    protected function MapData($datas, $fieldId, $fieldName) {
-        $obj = [];
-        foreach ($datas as $key => $value) {
-            array_push($obj, ['id' => $value->{$fieldId}, 'name' => $value->{$fieldName}]);
-        }
-        return $obj;
-    }
-    public function actionGetDistrict() {
-     $out = [];
-     if (isset($_POST['depdrop_parents'])) {
-         $parents = $_POST['depdrop_parents'];
-         if ($parents != null) {
-             $amphur_id = $parents[0];
-             $out = $this->getDistrict($amphur_id);
-             echo Json::encode(['output'=>$out, 'selected'=>'']);
-             return;
-         }
-     }
-     echo Json::encode(['output'=>'', 'selected'=>'']);
- }
-     protected function getDistrict($id){
-     $datas = District::find()->where(['AMPHUR_ID'=>$id])->all();
-     return $this->MapData($datas,'DISTRICT_ID','DISTRICT_NAME');
- }
 }
