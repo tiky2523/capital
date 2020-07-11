@@ -185,60 +185,127 @@ use app\models\CHos;
 <?= $form->field($model, 'b_locate')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2">
-<?= $form->field($model, 'amphur')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 'amphur')->dropdownList(
+            ArrayHelper::map(\app\models\Amphures::find()->all(),
+                    'AMPHUR_ID', 
+                    'AMPHUR_NAME'),
+            [
+                'id'=>'ddl-amphur',
+                'prompt'=>'เลือกอำเภอ....'
+]); ?>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2">
-<?= $form->field($model, 'tumbon')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 'tumbon')->widget(DepDrop::classname(), [
+            'options'=>['id'=>'building-tumbon'],
+            'data'=> $district,
+            'pluginOptions'=>[
+                'depends'=>['ddl-amphur'],
+                'placeholder'=>'เลือกตำบล...',
+                'url'=>Url::to(['/building/get-district'])
+            ]
+        ]); ?>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2">
-            <?= $form->field($model, 'hos_lev')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'hos_lev')->dropdownList(
+            ArrayHelper::map(\app\models\CSp::find()->all(),
+                    'code_sp', 
+                    'sp_name'),
+            [
+                'id'=>'ddl-CSp',
+                'prompt'=>'เลือกระดับสถานบริการ....'
+]); ?>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2">
-            <?= $form->field($model, 't_build')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 't_build')->dropDownList([
+                '1' => 'ปรับปรุง',
+                '2' => 'สร้างใหม่',
+                '3' => 'ทดแทน',
+                    ], ['prompt' => 'เลือกประเภทคำขอ...'])
+            ?>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-6 col-sm-6 col-md-6">
-<?= $form->field($model, 'reason')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 'reason')->textarea(['row' => 6]) ?>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2">
 <?= $form->field($model, 'l_time')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2">
-<?= $form->field($model, 'pop')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 'pop')->widget(NumberControl::classname(), [
+    'maskedInputOptions' => [
+        'prefix' => ' ',
+        'suffix' => ' ',
+        'allowMinus' => false
+    ]
+
+]); ?>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2">
-<?= $form->field($model, 'opd_visit')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 'opd_visit')->widget(NumberControl::classname(), [
+    'maskedInputOptions' => [
+        'prefix' => ' ',
+        'suffix' => ' ',
+        'allowMinus' => false
+    ]
+
+]); ?>
         </div>
     </div>
 
     <div class="row">
         <div class="col-xs-2 col-sm-2 col-md-2">
-<?= $form->field($model, 'active_bed')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 'active_bed')->widget(NumberControl::classname(), [
+    'maskedInputOptions' => [
+        'prefix' => ' ',
+        'suffix' => ' ',
+        'allowMinus' => false
+    ]
+
+]); ?>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2">
-            <?= $form->field($model, 'SUM_AdjRw')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'SUM_AdjRw')->widget(NumberControl::classname(), [
+    'maskedInputOptions' => [
+        'prefix' => ' ',
+        'suffix' => ' ',
+        'allowMinus' => false
+    ]
+
+]); ?>
         </div>
         <div class="col-xs-8 col-sm-8 col-md-8">
-            <?= $form->field($model, 'EC')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'EC')->textarea(['row' => 8]) ?>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-8 col-sm-8 col-md-8">
-<?= $form->field($model, 'ES')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 'ES')->textarea(['row' => 6]) ?>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2">
-<?= $form->field($model, 'PCC')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 'PCC')->dropDownList([
+                '1' => 'เป็นแม่ข่าย PCC',
+                '2' => 'เป็นลูกข่าย PCC',
+                    ], ['prompt' => 'เลือกประเภท PCC...'])
+            ?>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2">
-            <?= $form->field($model, 'Famine')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'Famine')->dropDownList([
+                '1' => 'พื้นที่ชุมชนเมือง',
+                '2' => 'พื้นที่ปกติ 1',
+                '3' => 'พื้นที่ปกติ 2',
+                '4' => 'พื้นที่ปกติ 3',
+                '5' => 'พื้นที่เฉพาะระดับ 1',
+                '6' => 'พื้นที่เฉพาะระดับ 2',
+                    ], ['prompt' => 'เลือกระดับความกันดาร...'])
+            ?>
         </div>
 
     </div>
 
     <div class="row">
         <div class="col-xs-8 col-sm-8 col-md-8">
-<?= $form->field($model, 'new_b')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 'new_b')->textarea(['row' => 8]) ?>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2">
         <?= $form->field($model, 'personels')->textInput(['maxlength' => true]) ?>

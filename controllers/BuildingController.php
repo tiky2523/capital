@@ -13,6 +13,8 @@ use yii\helpers\Json;
 use yii\helpers\ArrayHelper;
 use yii\helpers\BaseFileHelper;
 use app\models\CHos;
+use app\models\Amphures;
+use app\models\Districts;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
@@ -88,14 +90,14 @@ class BuildingController extends Controller {
     public function actionUpdate($id) {
         $model = $this->findModel($id);
         $code5= ArrayHelper::map($this->getChos($model->hcode),'code5','hospital');
-
+        $district       = ArrayHelper::map($this->getDistrict($model->amphur),'id','name');
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id_building]);
         }
 
         return $this->render('update', [
                     'model' => $model,
-                    'code5'=>$code5
+                    'district' =>$district
         ]);
     }
 
@@ -153,5 +155,21 @@ class BuildingController extends Controller {
         }
         return $obj;
     }
-
+    public function actionGetDistrict() {
+     $out = [];
+     if (isset($_POST['depdrop_parents'])) {
+         $parents = $_POST['depdrop_parents'];
+         if ($parents != null) {
+             $amphur_id = $parents[0];
+             $out = $this->getDistrict($amphur_id);
+             echo Json::encode(['output'=>$out, 'selected'=>'']);
+             return;
+         }
+     }
+     echo Json::encode(['output'=>'', 'selected'=>'']);
+ }
+     protected function getDistrict($id){
+     $datas = District::find()->where(['AMPHUR_ID'=>$id])->all();
+     return $this->MapData($datas,'DISTRICT_ID','DISTRICT_NAME');
+ }
 }
