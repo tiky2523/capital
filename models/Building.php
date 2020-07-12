@@ -65,10 +65,10 @@ class Building extends \yii\db\ActiveRecord
             [['rank_cup', 'rank_sso', 'rank_hos', 'rank_CR'], 'integer'],
             [['d_update'], 'safe'],
             [['unit_no', 'hos_lev', 't_build', 'l_time', 'PCC', 'Famine', 'personels'], 'string', 'max' => 4],
-            [['f_year', 'd_type', 'hcode', 'hname', 'b_type', 'p_type', 'p_no', 'u_price','bud_type'], 'string', 'max' => 45],
+            [['f_year', 'd_type', 'hcode', 'hname', 'b_type', 'p_type', 'p_no', 'u_price','bud_type','b_locate',], 'string', 'max' => 45],
             [['b_list', 'reason', 'EC', 'ES', 'new_b'], 'string', 'max' => 255],
             [['b_binding1', 'b_binding2', 'b_binding3', 't_budget'], 'string', 'max' => 20],
-            [['b_locate', 'amphur', 'tumbon'], 'string', 'max' => 25],
+            [[ 'amphur', 'tumbon'], 'string', 'max' => 25],
             [['pop', 'opd_visit', 'active_bed', 'SUM_AdjRw'], 'string', 'max' => 10],
             [['pop', 'opd_visit', 'active_bed', 'SUM_AdjRw'], 'string', 'max' => 10],
         ];
@@ -120,19 +120,19 @@ class Building extends \yii\db\ActiveRecord
             'd_update' => 'วันที่ปรับปรุงข้อมูล',
         ];
     }
-    public function getCHos(){
+    public function getChos(){
         return $this->hasone(CHos::className(), ['code5'=>'hcode']);
     }
-    public function getCSp(){
+    public function getCsp(){
         return $this->hasone(CSp::className(), ['code_sp'=>'hos_lev']);
     }
-    public function getCBuild(){
+    public function getCbuild(){
         return $this->hasone(CBuild::className(), ['code_b'=>'b_type']);
     }
-    public function getDistricts(){
-        return $this->hasone(Districts::className(), ['DISTRICT_CODE'=>'tumbon']);
+    public function getDist(){
+        return $this->hasone(Districts::className(), ['DISTRICT_ID'=>'tumbon']);
     }
-    public function getAmphures(){
-        return $this->hasone(Amphures::className(), ['AMPHUR_CODE'=>'amphur']);
+    public function getAmp(){
+        return $this->hasone(Amphures::className(), ['AMPHUR_ID'=>'amphur']);
     }
 }

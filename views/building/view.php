@@ -2,11 +2,12 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use kartik\number\NumberControl;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Building */
 
-$this->title = $model->id_building;
+$this->title = $model->hcode . '' . $model->b_list;
 $this->params['breadcrumbs'][] = ['label' => 'Buildings', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -17,49 +18,108 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id_building], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id_building], [
+        <?=
+        Html::a('Delete', ['delete', 'id' => $model->id_building], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
                 'method' => 'post',
             ],
-        ]) ?>
+        ])
+        ?>
     </p>
 
-    <?= DetailView::widget([
+    <?=
+    DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id_building',
-            'bud_type',
+                ['attribute' => 'bud_type',
+                'value' => $model->bud_type == '1' ? "งบลงทุน" : "งบค่าเสื่อม"
+            ],
             'f_year',
             'd_type',
-            'hcode',
-            'hname',
+                ['attribute' => 'd_type',
+                'value' => $model->d_type == '1' ? "รพศ/รพท/รพช" : "รพ.สต./ศสม."
+            ],
+            //'hcode',
+            [
+                'attribute' => 'hname',
+                'value' => $model->chos->hospital,
+            ],
             'rank_cup',
             'rank_sso',
             'rank_hos',
             'rank_CR',
             'b_list',
-            'b_type',
-            'p_type',
+                [
+                'attribute' => 'b_type',
+                'value' => $model->cbuild->s_name,
+            ],
+                ['attribute' => 'p_type',
+                'value' => $model->p_type == '1' ? "แบบมาตรฐานกองแบบ" : "แบบที่ออกแบบเอง"
+            ],
             'p_no',
-            'u_price',
+            
+            [
+                'attribute' => 'u_price',
+                'format' => ['decimal', 2]
+            ],
             'unit_no',
-            'b_binding1',
-            'b_binding2',
-            'b_binding3',
-            't_budget',
-            'b_locate',
-            'amphur',
-            'tumbon',
-            'hos_lev',
+            
+            [
+                'attribute' => 'b_binding1',
+                'format' => ['decimal', 2]
+            ],
+            
+            [
+                'attribute' => 'b_binding2',
+                'format' => ['decimal', 2]
+            ],
+            
+            [
+                'attribute' => 'b_binding3',
+                'format' => ['decimal', 2]
+            ],
+            
+            [
+                'attribute' => 't_budget',
+                'format' => ['decimal', 2]
+            ],
+            
+            [
+                'attribute' => 'amphur',
+                'value' => $model->amp->AMPHUR_NAME,
+            ],
+                [
+                'attribute' => 'tumbon',
+                'value' => $model->dist->DISTRICT_NAME,
+            ],
+            ['attribute' => 'hos_lev',
+                'value' => $model->csp->sp_name,
+            ],
             't_build',
             'reason',
             'l_time',
-            'pop',
-            'opd_visit',
+            
+            [
+                'attribute' => 'pop',
+                'format' => ['decimal', 0]
+            ],
+            
+            [
+                'attribute' => 'opd_visit',
+                'format' => ['decimal', 2]
+            ],
             'active_bed',
-            'SUM_AdjRw',
+            [
+                'attribute' => 'u_price',
+                'format' => ['decimal', 2]
+            ],
+            
+            [
+                'attribute' => 'SUM_AdjRw',
+                'format' => ['decimal', 2]
+            ],
             'EC',
             'ES',
             'PCC',
@@ -68,6 +128,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'personels',
             'd_update',
         ],
-    ]) ?>
+    ])
+    ?>
 
 </div>
