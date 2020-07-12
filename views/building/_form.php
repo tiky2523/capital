@@ -71,15 +71,17 @@ use app\models\CHos;
 
     <div class="row">
         <div class="col-xs-4 col-sm-4 col-md-4">
-            <?= $form->field($model, 'hname')->widget(Select2::classname(), [
-                'data' => ArrayHelper::map(app\models\CHos::find()->orderBy(['code5' => SORT_ASC])->
-                        all(), 'code5', 'hospital'),
-                'language' => 'th',
-                'options' => ['placeholder' => 'เลือกชื่อหน่วยงาน...'],
+            <?= $form->field($model, 'hname')->widget(DepDrop::className(), [
+                'data' => [],
+                'options' => ['placeholder' => 'เลือกหน่วยงาน...'],
+                'type' => DepDrop::TYPE_SELECT2,
+                'select2Options' => ['pluginOptions' => ['allowClear' => true]],
                 'pluginOptions' => [
-                    'allowClear' => true
+                    'depends' => ['building-hcode'],
+                    'url' => yii\helpers\Url::to(['/building/get-chos']),
+                    'loadingText' => 'กำลังค้นข้อมูล...',
                 ],
-            ]);        
+            ]);
             ?>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2">

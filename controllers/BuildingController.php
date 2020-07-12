@@ -89,6 +89,7 @@ class BuildingController extends Controller {
      */
     public function actionUpdate($id) {
         $model = $this->findModel($id);
+        $chos= ArrayHelper::map($this->getChos($model->chos),'id','name');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id_building]);
@@ -96,6 +97,7 @@ class BuildingController extends Controller {
 
         return $this->render('update', [
                     'model' => $model,
+                    'chos'=>$chos
                    
         ]);
     }
@@ -127,6 +129,29 @@ class BuildingController extends Controller {
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
- 
+    public function actionGetChos(){
+        $out = [];
+        if (isset($_POST['depdrop_parents'])){
+            $parents = $_POST['depdrop_parents'];
+            if ($parents != NULL){
+                $chos = $parents[0];
+                $out = $this->getChos($chos);
+                echo Json::encode(['output'=>$out, 'selected'=>'']);
+                return;
+            }
+        }
+        echo Json::encode(['output'=>'', 'selected'=>'']);
+    }  
+    protected function getChos($id){
+        $datas = CHos::find()->where(['code5'=>$id])->all();
+        return $this->MapData($datas,'code5','hospital');
+    }
+    protected function MapData($datas,$fieldID,$fieldName){
+        $obj = [];
+        foreach ($datas as $key => $value){
+            array_push($obj, ['id'=>$value->{$fieldID},'name'=>$value->{$fieldName}]);
+        }
+        return $obj;
+    }
 
 }
