@@ -33,14 +33,10 @@ $this->params['breadcrumbs'][] = $this->title;
     DetailView::widget([
         'model' => $model,
         'attributes' => [
-                ['attribute' => 'bud_type',
-                'value' => $model->bud_type == '1' ? "งบลงทุน" : "งบค่าเสื่อม"
-            ],
+            'bud_type',
+              
             'f_year',
             'd_type',
-                ['attribute' => 'd_type',
-                'value' => $model->d_type == '1' ? "รพศ/รพท/รพช" : "รพ.สต./ศสม."
-            ],
             //'hcode',
             [
                 'attribute' => 'hname',
@@ -55,9 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'b_type',
                 'value' => $model->cbuild->s_name,
             ],
-                ['attribute' => 'p_type',
-                'value' => $model->p_type == '1' ? "แบบมาตรฐานกองแบบ" : "แบบที่ออกแบบเอง"
-            ],
+            'p_type',
             'p_no',
             
             [
@@ -85,7 +79,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 't_budget',
                 'format' => ['decimal', 2]
             ],
-            
+            'b_locate',
             [
                 'attribute' => 'amphur',
                 'value' => $model->amp->AMPHUR_NAME,
@@ -100,19 +94,17 @@ $this->params['breadcrumbs'][] = $this->title;
             't_build',
             'reason',
             'l_time',
-            
             [
                 'attribute' => 'pop',
                 'format' => ['decimal', 0]
             ],
-            
             [
                 'attribute' => 'opd_visit',
                 'format' => ['decimal', 2]
             ],
-            'active_bed',
+            
             [
-                'attribute' => 'u_price',
+                'attribute' => 'active_bed',
                 'format' => ['decimal', 2]
             ],
             

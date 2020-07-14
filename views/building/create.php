@@ -6,17 +6,24 @@ use yii\helpers\Html;
 /* @var $model app\models\Building */
 
 $this->title = 'บันทึกรายการคำขอสิ่งก่อสร้าง';
-$this->params['breadcrumbs'][] = ['label' => 'Buildings', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'รายการสิ่งก่อสร้าง', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="building-create">
+    <div class="panel panel-success">
+        <div class="panel-heading"><h3><i class="glyphicon glyphicon-pencil"></i>
+                <?= Html::encode($this->title) ?></div>
+        <div class="panel-body">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+        <?=
+        $this->render('_form', [
+            'model' => $model,
+            'chos' => [],
+            'tum' => []
+        ])
+        ?>
+        </div>
 
-    <?= $this->render('_form', [
-        'model' => $model,
-        'chos'=>[],
-        'tum'=>[]
-    ]) ?>
+    </div>
 
 </div>

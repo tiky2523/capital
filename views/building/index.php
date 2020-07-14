@@ -45,12 +45,21 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'p_type',
             'p_no',
-            'u_price',
+            [
+                'attribute'=>'u_price',
+                'format' => ['decimal', 2]
+                
+            ],
             'unit_no',
+            
             //'b_binding1',
             //'b_binding2',
             //'b_binding3',
-            't_budget',
+            [
+                'attribute'=>'t_budget',
+                'format' => ['decimal', 2]
+                
+            ],
             'b_locate',
             [
                 'attribute'=>'amphur',
@@ -65,10 +74,22 @@ $this->params['breadcrumbs'][] = $this->title;
             't_build',
             'reason',
             'l_time',
-            'pop',
-            'opd_visit',
-            'active_bed',
-            'SUM_AdjRw',
+            [
+                'attribute'=>'pop',
+                'format' => ['decimal', 0]
+                
+            ],
+            [
+                'attribute'=>'active_bed',
+                'format' => ['decimal', 2]
+                
+            ],
+            
+            [
+                'attribute'=>'SUM_AdjRw',
+                'format' => ['decimal', 2]
+                
+            ],
             'EC',
             'ES',
             'PCC',

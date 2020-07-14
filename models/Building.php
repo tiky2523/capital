@@ -64,7 +64,7 @@ class Building extends \yii\db\ActiveRecord
         return [
             [['rank_cup', 'rank_sso', 'rank_hos', 'rank_CR'], 'integer'],
             [['d_update'], 'safe'],
-            [['unit_no', 'hos_lev', 't_build', 'l_time', 'PCC', 'Famine', 'personels'], 'string', 'max' => 4],
+            [['unit_no', 'hos_lev', 't_build', 'l_time', 'PCC', 'Famine', 'personels'], 'string', 'max' => 35],
             [['f_year', 'd_type', 'hcode', 'hname', 'b_type', 'p_type', 'p_no', 'u_price','bud_type','b_locate',], 'string', 'max' => 45],
             [['b_list', 'reason', 'EC', 'ES', 'new_b'], 'string', 'max' => 255],
             [['b_binding1', 'b_binding2', 'b_binding3', 't_budget'], 'string', 'max' => 20],

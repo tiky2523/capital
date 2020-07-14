@@ -90,7 +90,7 @@ class BuildingController extends Controller {
     public function actionUpdate($id) {
         $model = $this->findModel($id);
         $chos= ArrayHelper::map($this->getChos($model->chos),'id','name');
-        $tum = ArrayHelper::map($this->getDist($model->ampur),'id','name');
+        $tum = ArrayHelper::map($this->getDist($model->tumbon),'id','name');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id_building]);
