@@ -90,6 +90,7 @@ class BuildingController extends Controller {
     public function actionUpdate($id) {
         $model = $this->findModel($id);
         $chos= ArrayHelper::map($this->getChos($model->chos),'id','name');
+        $tum = ArrayHelper::map($this->getDist($model->ampur),'id','name');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id_building]);
@@ -97,7 +98,8 @@ class BuildingController extends Controller {
 
         return $this->render('update', [
                     'model' => $model,
-                    'chos'=>$chos
+                    'chos'=>$chos,
+                    'tum'=>$tum
                    
         ]);
     }
@@ -146,6 +148,24 @@ class BuildingController extends Controller {
         $datas = CHos::find()->where(['code5'=>$id])->all();
         return $this->MapData($datas,'code5','hospital');
     }
+    public function actionGetDist(){
+        $out = [];
+        if (isset($_POST['depdrop_parents'])){
+            $parents = $_POST['depdrop_parents'];
+            if ($parents != NULL){
+                $amphur = $parents[0];
+                $out = $this->getDist($amphur);
+                echo Json::encode(['output'=>$out, 'selected'=>'']);
+                return;
+            }
+        }
+        echo Json::encode(['output'=>'', 'selected'=>'']);
+    }  
+    protected function getDist($id){
+        $datas = Districts::find()->where(['AMPHUR_ID'=>$id])->all();
+        return $this->MapData($datas,'DISTRICT_ID','DISTRICT_NAME');
+    }
+
     protected function MapData($datas,$fieldID,$fieldName){
         $obj = [];
         foreach ($datas as $key => $value){

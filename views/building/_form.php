@@ -9,6 +9,7 @@ use kartik\depdrop\DepDrop;
 use kartik\number\NumberControl;
 use yii\jui\DatePicker;
 use app\models\CHos;
+use app\models\Districts;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Building */
@@ -185,10 +186,10 @@ use app\models\CHos;
 
     <div class="row">
         <div class="col-xs-4 col-sm-4 col-md-4">
-<?= $form->field($model, 'b_locate')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'b_locate')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2">
-<?= $form->field($model, 'amphur')->widget(Select2::classname(), [
+            <?= $form->field($model, 'amphur')->widget(Select2::classname(), [
                 'data' => ArrayHelper::map(app\models\Amphures::find()->orderBy(['AMPHUR_ID' => SORT_ASC])->all(), 
                         'AMPHUR_ID', 'AMPHUR_NAME'),
                 'language' => 'th',
@@ -200,13 +201,15 @@ use app\models\CHos;
             ?>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2">
-<?= $form->field($model, 'tumbon')->widget(Select2::classname(), [
-                'data' => ArrayHelper::map(app\models\Districts::find()->orderBy(['DISTRICT_ID' => SORT_ASC])->all(), 
-                        'DISTRICT_ID', 'DISTRICT_NAME'),
-                'language' => 'th',
-                'options' => ['placeholder' => ' เลือกตำบล...'],
+            <?= $form->field($model, 'tumbon')->widget(DepDrop::className(), [
+                'data' => $tum,
+                'options' => ['placeholder' => 'คลิกเลือกตำบล...'],
+                'type' => DepDrop::TYPE_SELECT2,
+                'select2Options' => ['pluginOptions' => ['allowClear' => true]],
                 'pluginOptions' => [
-                    'allowClear' => true
+                    'depends' => ['building-amphur'],
+                    'url' => yii\helpers\Url::to(['/building/get-dist']),
+                    'loadingText' => 'กำลังค้นข้อมูล...',
                 ],
             ]);
             ?>
