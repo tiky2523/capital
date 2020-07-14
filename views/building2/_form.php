@@ -103,63 +103,227 @@ use app\models\Districts;
             ?>
     </div>
 
-    <?= $form->field($model, 'amphur')->textInput(['maxlength' => true]) ?>
+        <div class="col-xs-2 col-sm-2 col-md-2">
+            <?= $form->field($model, 'amphur')->widget(Select2::classname(), [
+                'data' => ArrayHelper::map(app\models\Amphures::find()->orderBy(['AMPHUR_ID' => SORT_ASC])->all(), 
+                        'AMPHUR_ID', 'AMPHUR_NAME'),
+                'language' => 'th',
+                'options' => ['placeholder' => ' เลือกอำเภอ...'],
+                'pluginOptions' => [
+                    'allowClear' => true
+                ],
+            ]);
+            ?>
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2">
+            <?= $form->field($model, 'tumbon')->widget(DepDrop::className(), [
+                'data' => $tum,
+                'options' => ['placeholder' => 'คลิกเลือกตำบล...'],
+                'type' => DepDrop::TYPE_SELECT2,
+                'select2Options' => ['pluginOptions' => ['allowClear' => true]],
+                'pluginOptions' => [
+                    'depends' => ['building2-amphur'],
+                    'url' => yii\helpers\Url::to(['/building2/get-dist']),
+                    'loadingText' => 'กำลังค้นข้อมูล...',
+                ],
+            ]);
+            ?>
+        </div>
 
-    <?= $form->field($model, 'tumbon')->textInput(['maxlength' => true]) ?>
+        <div class="col-xs-2 col-sm-2 col-md-2">
+            <?= $form->field($model, 'rank_cup')->textInput() ?>
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2">
+            <?= $form->field($model, 'rank_sso')->textInput() ?>
+        </div>
+        
 
-    <?= $form->field($model, 'rank_cup')->textInput() ?>
-
-    <?= $form->field($model, 'rank_sso')->textInput() ?>
-
-    <?= $form->field($model, 'rank_hos')->textInput() ?>
-
-    <?= $form->field($model, 'rank_CR')->textInput() ?>
 </div>
 
-    <?= $form->field($model, 'b_list')->textInput(['maxlength' => true]) ?>
+<div class="row">
+    <div class="col-xs-2 col-sm-2 col-md-2">
+            <?= $form->field($model, 'rank_hos')->textInput() ?>
+        </div>
+    <div class="col-xs-2 col-sm-2 col-md-2">
+            <?= $form->field($model, 'rank_CR')->textInput() ?>
+        </div>
+    <div class="col-xs-6 col-sm-6 col-md-6">
+        <?= $form->field($model, 'b_list')->textarea(['row' => 6]) ?>
+    </div>
+     <div class="col-xs-2 col-sm-2 col-md-2">
+            <?= $form->field($model, 'p_type')->widget(Select2::classname(), [
+                'data' => ArrayHelper::map(app\models\CBuild2::find()->
+                        orderBy(['s_name' => SORT_ASC])->all(), 'code_b', 's_name'),
+                'language' => 'th',
+                'options' => ['placeholder' => 'เลือกประเภทครุภัณฑ์...'],
+                'pluginOptions' => [
+                    'allowClear' => true
+                ],
+            ]);
+            ?>
+        </div>
+</div>
 
-    <?= $form->field($model, 'p_type')->textInput(['maxlength' => true]) ?>
+<div class="row">
+    
+   <div class="col-xs-2 col-sm-2 col-md-2">
+        <?= $form->field($model, 'u_price')->widget(NumberControl::classname(), [
+        'maskedInputOptions' => [
+            'prefix' => ' ',
+            'suffix' => ' ',
+            'allowMinus' => false
+            ]
+        ]); ?>
+        </div>
+    <div class="col-xs-2 col-sm-2 col-md-2">
+        <?= $form->field($model, 'unit_no')->textInput(['maxlength' => true]) ?>
+    </div>
 
-    <?= $form->field($model, 'p_no')->textInput(['maxlength' => true]) ?>
+    <div class="col-xs-2 col-sm-2 col-md-2">
+        <?= $form->field($model, 'budget')->widget(NumberControl::classname(), [
+        'maskedInputOptions' => [
+            'prefix' => ' ',
+            'suffix' => ' ',
+            'allowMinus' => false
+            ]
+        ]); ?>
+    </div>
 
-    <?= $form->field($model, 'u_price')->textInput(['maxlength' => true]) ?>
+    <div class="col-xs-2 col-sm-2 col-md-2">
+        <?= $form->field($model, 't_budget')->widget(NumberControl::classname(), [
+        'maskedInputOptions' => [
+            'prefix' => ' ',
+            'suffix' => ' ',
+            'allowMinus' => false
+            ]
+        ]); ?>
+        </div>
+    <div class="col-xs-2 col-sm-2 col-md-2">
+            <?= $form->field($model, 'hos_lev')->dropdownList(
+            ArrayHelper::map(\app\models\CSp::find()->all(),
+                    'code_sp', 
+                    'sp_name'),
+                [
+                'id'=>'ddl-CSp',
+                'prompt'=>'เลือกระดับสถานบริการ....'
+            ]); ?>
+    </div>
+    <div class="col-xs-2 col-sm-2 col-md-2">
+            <?= $form->field($model, 't_build')->dropDownList([
+                'ซื้อใหม่' => 'ซื้อใหม่',
+                'ขอทดแทน' => 'ขอทดแทน',
+                'ขอเพิ่ม' => 'ขอเพิ่ม',
+                    ], ['prompt' => 'เลือกประเภทคำขอ...'])
+            ?>
+    </div>
+</div>
 
-    <?= $form->field($model, 'unit_no')->textInput(['maxlength' => true]) ?>
+<div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6">
+        <?= $form->field($model, 'reason')->textarea(['row' => 6]) ?>
+    </div>
 
-    <?= $form->field($model, 'budget')->textInput(['maxlength' => true]) ?>
+<div class="col-xs-2 col-sm-2 col-md-2">
+<?= $form->field($model, 'l_time')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2">
+<?= $form->field($model, 'pop')->widget(NumberControl::classname(), [
+    'maskedInputOptions' => [
+        'prefix' => ' ',
+        'suffix' => ' ',
+        'allowMinus' => false
+    ]
 
-    <?= $form->field($model, 't_budget')->textInput(['maxlength' => true]) ?>
+]); ?>
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2">
+<?= $form->field($model, 'opd_visit')->widget(NumberControl::classname(), [
+    'maskedInputOptions' => [
+        'prefix' => ' ',
+        'suffix' => ' ',
+        'allowMinus' => false
+    ]
 
-    <?= $form->field($model, 'hos_lev')->textInput(['maxlength' => true]) ?>
+]); ?>
+        </div>
+</div>
 
-    <?= $form->field($model, 't_build')->textInput(['maxlength' => true]) ?>
+<div class="row">
 
-    <?= $form->field($model, 'reason')->textInput(['maxlength' => true]) ?>
+    <div class="col-xs-2 col-sm-2 col-md-2">
+        <?= $form->field($model, 'active_bed')->widget(NumberControl::classname(), [
+        'maskedInputOptions' => [
+            'prefix' => ' ',
+            'suffix' => ' ',
+            'allowMinus' => false
+        ]
 
-    <?= $form->field($model, 'l_time')->textInput(['maxlength' => true]) ?>
+        ]); ?>
+    </div>
 
-    <?= $form->field($model, 'pop')->textInput(['maxlength' => true]) ?>
+    <div class="col-xs-2 col-sm-2 col-md-2">
+        <?= $form->field($model, 'SUM_AdjRw')->widget(NumberControl::classname(), [
+        'maskedInputOptions' => [
+            'prefix' => ' ',
+            'suffix' => ' ',
+            'allowMinus' => false
+        ]
 
-    <?= $form->field($model, 'opd_visit')->textInput(['maxlength' => true]) ?>
+        ]); ?>
+    </div>
+    
+     <div class="col-xs-8 col-sm-8 col-md-8">
+            <?= $form->field($model, 'EC')->textarea(['row' => 8]) ?>
+    </div>
+ 
+</div>
 
-    <?= $form->field($model, 'active_bed')->textInput(['maxlength' => true]) ?>
+<div class="row">
+   <div class="col-xs-8 col-sm-8 col-md-8">
+        <?= $form->field($model, 'ES')->textarea(['row' => 6]) ?>
+    </div>
+     <div class="col-xs-2 col-sm-2 col-md-2">
+            <?= $form->field($model, 'PCC')->dropDownList([
+                'แม่ข่าย PCC' => 'แม่ข่าย PCC',
+                'ลูกข่าย PCC' => 'ลูกข่าย PCC',
+                    ], ['prompt' => 'เลือกประเภท PCC...'])
+            ?>
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2">
+            <?= $form->field($model, 'Famine')->dropDownList([
+                'พื้นที่ชุมชนเมือง' => 'พื้นที่ชุมชนเมือง',
+                'พื้นที่ปกติ 1' => 'พื้นที่ปกติ 1',
+                'พื้นที่ปกติ 2' => 'พื้นที่ปกติ 2',
+                'พื้นที่ปกติ 3' => 'พื้นที่ปกติ 3',
+                'พื้นที่เฉพาะระดับ 1' => 'พื้นที่เฉพาะระดับ 1',
+                'พื้นที่เฉพาะระดับ 2' => 'พื้นที่เฉพาะระดับ 2',
+                    ], ['prompt' => 'เลือกระดับความกันดาร...'])
+            ?>
+        </div>
+</div>
 
-    <?= $form->field($model, 'SUM_AdjRw')->textInput(['maxlength' => true]) ?>
+<div class="row">
 
-    <?= $form->field($model, 'EC')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'ES')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'PCC')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'Famine')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'new_b')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'personels')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'd_update')->textInput() ?>
-
+    <div class="col-xs-8 col-sm-8 col-md-8">
+        <?= $form->field($model, 'new_b')->textarea(['row' => 8]) ?>
+    </div>
+    <div class="col-xs-2 col-sm-2 col-md-2">
+        <?= $form->field($model, 'personels')->textInput(['maxlength' => true]) ?>
+    </div>
+    <div class="col-xs-2 col-sm-2 col-md-2">
+        <?= $form->field($model, 'd_update')->widget(DatePicker::className(), [
+                'language' => 'th',
+                'dateFormat' => 'yyyy-MM-dd ',
+                'clientOptions' => [
+                    'changeMonth' => true,
+                    'changeYear' => true,
+                ],
+                'options' => ['class' => 'form-control'
+                ],
+            ]);
+            ?>
+    </div>
+</div>
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>

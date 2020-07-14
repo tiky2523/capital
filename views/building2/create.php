@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Building2 */
 
-$this->title = 'Create Building2';
-$this->params['breadcrumbs'][] = ['label' => 'Building2s', 'url' => ['index']];
+$this->title = 'เพิ่มรายการครุภัณฑ์';
+$this->params['breadcrumbs'][] = ['label' => 'รายการครุภัณฑ์', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="building2-create">
