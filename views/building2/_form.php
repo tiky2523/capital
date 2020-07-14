@@ -1,7 +1,15 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use kartik\widgets\Select2;
+use kartik\depdrop\DepDrop;
+use kartik\number\NumberControl;
+use yii\jui\DatePicker;
+use app\models\CHos;
+use app\models\Districts;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Building2 */
@@ -12,14 +20,21 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'bud_type')->textInput(['maxlength' => true]) ?>
-
+<div class="row">
+    <div class="col-xs-3 col-sm-3 col-md-3">
+    <?=
+            $form->field($model, 'bud_type')->dropDownList([
+                'งบลงทุน' => 'งบลงทุน',
+                'งบค่าเสื่อม' => 'งบค่าเสื่อม',
+                    ], ['prompt' => 'เลือกประเภทงบประมาณ...'])
+            ?>
+    </div>
     <?= $form->field($model, 'f_year')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'd_type')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'hmain')->textInput(['maxlength' => true]) ?>
-
+</div>
     <?= $form->field($model, 'hcode')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'hname')->textInput(['maxlength' => true]) ?>
