@@ -72,7 +72,7 @@ use app\models\CHos;
     <div class="row">
         <div class="col-xs-4 col-sm-4 col-md-4">
             <?= $form->field($model, 'hname')->widget(DepDrop::className(), [
-                'data' => [],
+                'data' => $chos,
                 'options' => ['placeholder' => 'เลือกหน่วยงาน...'],
                 'type' => DepDrop::TYPE_SELECT2,
                 'select2Options' => ['pluginOptions' => ['allowClear' => true]],
