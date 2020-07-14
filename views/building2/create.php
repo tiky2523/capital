@@ -10,11 +10,20 @@ $this->params['breadcrumbs'][] = ['label' => 'Building2s', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="building2-create">
+    <div class="panel panel-success">
+        <div class="panel-heading"><h3><i class="glyphicon glyphicon-pencil"></i>
+                <?= Html::encode($this->title) ?></div>
+        <div class="panel-body">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+        <?=
+        $this->render('_form', [
+            'model' => $model,
+            'chos' => [],
+            'tum' => []
+        ])
+        ?>
+        </div>
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+    </div>
 
 </div>

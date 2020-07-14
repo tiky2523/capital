@@ -86,7 +86,22 @@ use app\models\Districts;
     
 </div>
 
-    <?= $form->field($model, 'hname')->textInput(['maxlength' => true]) ?>
+<div class="row">
+
+    <div class="col-xs-4 col-sm-4 col-md-4">
+            <?= $form->field($model, 'hname')->widget(DepDrop::className(), [
+                'data' => $chos,
+                'options' => ['placeholder' => 'เลือกหน่วยงาน...'],
+                'type' => DepDrop::TYPE_SELECT2,
+                'select2Options' => ['pluginOptions' => ['allowClear' => true]],
+                'pluginOptions' => [
+                    'depends' => ['building2-hcode'],
+                    'url' => yii\helpers\Url::to(['/building2/get-chos']),
+                    'loadingText' => 'กำลังค้นข้อมูล...',
+                ],
+            ]);
+            ?>
+    </div>
 
     <?= $form->field($model, 'amphur')->textInput(['maxlength' => true]) ?>
 
@@ -99,6 +114,7 @@ use app\models\Districts;
     <?= $form->field($model, 'rank_hos')->textInput() ?>
 
     <?= $form->field($model, 'rank_CR')->textInput() ?>
+</div>
 
     <?= $form->field($model, 'b_list')->textInput(['maxlength' => true]) ?>
 

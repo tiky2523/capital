@@ -11,11 +11,18 @@ $this->params['breadcrumbs'][] = ['label' => $model->id_building, 'url' => ['vie
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="building2-update">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
+<div class="panel panel-warning">
+        <div class="panel-heading"><h3><i class="glyphicon glyphicon-edit"></i>
+        <?= Html::encode($this->title) ?></div>
+        <div class="panel-body">
+    
+    
     <?= $this->render('_form', [
         'model' => $model,
+        'chos'=>$chos,
+        'tum'=>$tum
+
     ]) ?>
+        </div>
 
 </div>
