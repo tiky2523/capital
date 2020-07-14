@@ -75,7 +75,7 @@ class Building2 extends \yii\db\ActiveRecord
     {
         return [
             'id_building' => 'Id Building',
-            'bud_type' => 'ประเภทงบ 1; งบประมาณรายจ่าย 2;งบค่าเสื่อม',
+            'bud_type' => 'ประเภทงบ',
             'f_year' => 'ปีงบประมาณที่จะส่งคำขอ',
             'd_type' => 'ประเภทหน่วยงาน ตาม สนย.',
             'hmain' => 'โรงพยาบาลแม่ข่าย',
@@ -88,13 +88,13 @@ class Building2 extends \yii\db\ActiveRecord
             'rank_hos' => 'เรียงลำดับที่ กลุ่ม ผอ.รพ.',
             'rank_CR' => 'เรียงลำดับ กรรมการระดับจังหวัด',
             'b_list' => 'รายการสิ่งก่อสร้าง',
-            'p_type' => 'ประเภทแบบแผน',
+            'p_type' => 'ประเภทครุภัณฑ์',
             'p_no' => 'แบบเลขที่แบบ',
             'u_price' => 'ราคาต่อหน่วย',
             'unit_no' => 'จำนวนที่ต้องการ',
             'budget' => 'งบประมาณที่ขอ',
             't_budget' => 'จำนวนเงินหลังการปัดเศษ',
-            'hos_lev' => 'ระดับสถานบริการ  service plan',
+            'hos_lev' => 'ระดับสถานบริการ service plan',
             't_build' => 'ประเภทคำขอ',
             'reason' => 'เหตุผลความจำเป็น',
             'l_time' => 'อายุการใช้งาน',
@@ -102,13 +102,28 @@ class Building2 extends \yii\db\ActiveRecord
             'opd_visit' => 'opd_visit',
             'active_bed' => 'active_bed',
             'SUM_AdjRw' => 'SUM_AdjRw',
-            'EC' => 'หตุผลเปิดศูนย์ความเป็นเลิศทางการแพทย์',
-            'ES' => 'เพิ่มศักยภาพการให้บริการและขยายเตียง อธิบาย',
-            'PCC' => 'เป็นแม่ข่าย PCC หรือไม่',
+            'EC' => 'กรณีเปิดศูนย์ความเป็นเลิศทางการแพทย์',
+            'ES' => 'กรณีเพิ่มศักยภาพการให้บริการขยายบริการอธิบาย',
+            'PCC' => 'เป็นแม่ข่าย PCC',
             'Famine' => 'ระดับความกันดาร',
             'new_b' => 'กรณีขอใหม่ไม่เคยมีมาก่อนอธิบายเหตุผล',
             'personels' => 'จำนวนบุคลากรที่ปฎิบัติงาน',
-            'd_update' => 'date()	วันที่ปรับปรุงข้อมูล',
+            'd_update' => 'วันนที่ปรับปรุงข้อมูล',
         ];
+    }
+    public function getChos(){
+        return $this->hasone(CHos::className(), ['code5'=>'hcode']);
+    }
+    public function getCsp(){
+        return $this->hasone(CSp::className(), ['code_sp'=>'hos_lev']);
+    }
+    public function getCbuild2(){
+        return $this->hasone(CBuild2::className(), ['code_b'=>'b_type']);
+    }
+    public function getDist(){
+        return $this->hasone(Districts::className(), ['DISTRICT_ID'=>'tumbon']);
+    }
+    public function getAmp(){
+        return $this->hasone(Amphures::className(), ['AMPHUR_ID'=>'amphur']);
     }
 }
