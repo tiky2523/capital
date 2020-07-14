@@ -46,4 +46,7 @@ class CSp extends \yii\db\ActiveRecord
     public function getBuilding(){
         return $this->hasMany(Building::className(), ['hos_lev'=>'code_sp']);
     }
+    public function getBuilding2(){
+        return $this->hasMany(Building2::className(), ['hos_lev'=>'code_sp']);
+    }
 }

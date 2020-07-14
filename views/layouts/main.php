@@ -39,8 +39,7 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'เมนูหลัก', 'url' => ['/site/index']],
-            ['label' => 'เพิ่มคำขอสิ่งก่อสร้าง', 'url' => ['/building/index']],
-            ['label' => 'ประเภทสิ่งก่อสร้าง', 'url' => ['/cbuild/index']],
+            ['label' => 'รายการสิ่งก่อสร้าง', 'url' => ['/building/index']],
             ['label' => 'เกี่ยวกับโปรแกรม', 'url' => ['/site/about']],
             ['label' => 'ติดต่อเรา', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (

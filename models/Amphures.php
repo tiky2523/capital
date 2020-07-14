@@ -61,4 +61,7 @@ class Amphures extends \yii\db\ActiveRecord
     public function getDist (){
         return $this->hasmany(Provinces::className(), ['AMPHUR_ID'=>'AMPHUR_ID']);
     }
+    public function getBuilding2(){
+        return $this->hasMany(Building2::className(), ['amphur'=>'AMPHUR_COME']);
+    }
 }

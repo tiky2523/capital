@@ -60,4 +60,7 @@ class CHos extends \yii\db\ActiveRecord
     public function getBuilding(){
         return $this->hasMany(Building::className(), ['hcode'=>'code5']);
     }
+    public function getBuilding2(){
+        return $this->hasMany(Building2::className(), ['hcode'=>'code5']);
+    }
 }

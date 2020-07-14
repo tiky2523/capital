@@ -60,4 +60,7 @@ class Districts extends \yii\db\ActiveRecord
     public function getProvinces(){
         return $this->hasone(Provinces::className(), ['PROVINCE_ID'=>'PROVINCE_ID']);
     }
+    public function getBuilding2(){
+        return $this->hasMany(Building2::className(), ['tumbon'=>'DISTRICT_COME']);
+    }
 }
