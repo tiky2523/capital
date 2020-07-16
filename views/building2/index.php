@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\Building2Search */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'รายการครุภัณฑ์ลงทุนและค่าเสื่อม';
+$this->title = 'คำขอครุภัณฑ์';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="building2-index">
@@ -28,32 +28,68 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'id_building',
             'bud_type',
-            'f_year',
+                        'f_year',
             'd_type',
             'hmain',
-            'hcode',
-            'hname',
-            'amphur',
-            'tumbon',
+            //'hcode',
+            [
+                'attribute'=>'hname',
+                'value'=>'chos.hospital',
+            ],
+            [
+                'attribute'=>'amphur',
+                'value'=>'amp.AMPHUR_NAME',
+            ],
+            [
+                'attribute'=>'tumbon',
+                'value'=>'dist.DISTRICT_NAME',
+            ],
             'rank_cup',
             'rank_sso',
             'rank_hos',
             'rank_CR',
             'b_list',
-            'p_type',
+            [
+                'attribute'=>'p_type',
+                'value'=>'cbuild2.s_name',
+            ],
             //'p_no',
-            'u_price',
+            [
+                'attribute'=>'u_price',
+                'format' => ['decimal', 2]
+                
+            ],
             'unit_no',
-            'budget',
-            't_budget',
+            [
+                'attribute'=>'budget',
+                'format' => ['decimal', 2]
+                
+            ],
+            [
+                'attribute'=>'t_budget',
+                'format' => ['decimal', 2]
+                
+            ],
             'hos_lev',
             't_build',
             'reason',
             'l_time',
-            'pop',
-            'opd_visit',
-            'active_bed',
-            'SUM_AdjRw',
+             [
+                'attribute'=>'pop',
+                'format' => ['decimal', 0]
+                
+            ],
+            [
+                'attribute'=>'active_bed',
+                'format' => ['decimal', 2]
+                
+            ],
+            
+            [
+                'attribute'=>'SUM_AdjRw',
+                'format' => ['decimal', 2]
+                
+            ],
             'EC',
             'ES',
             'PCC',

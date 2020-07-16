@@ -40,6 +40,7 @@ AppAsset::register($this);
         'items' => [
             ['label' => 'เมนูหลัก', 'url' => ['/site/index']],
             ['label' => 'รายการสิ่งก่อสร้าง', 'url' => ['/building/index']],
+            ['label' => 'รายการครุภัณฑ์', 'url' => ['/building2/index']],
             ['label' => 'เกี่ยวกับโปรแกรม', 'url' => ['/site/about']],
             ['label' => 'ติดต่อเรา', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (

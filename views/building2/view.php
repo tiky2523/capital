@@ -29,34 +29,68 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id_building',
+            //'id_building',
             'bud_type',
             'f_year',
             'd_type',
             'hmain',
-            'hcode',
+            //'hcode',
             'hname',
-            'amphur',
-            'tumbon',
+            [
+                'attribute' => 'amphur',
+                'value' => $model->amp->AMPHUR_NAME,
+            ],
+                [
+                'attribute' => 'tumbon',
+                'value' => $model->dist->DISTRICT_NAME,
+            ],
             'rank_cup',
             'rank_sso',
             'rank_hos',
             'rank_CR',
             'b_list',
-            'p_type',
+            [
+                'attribute' => 'p_type',
+                'value' => $model->cbuild2->s_name,
+            ],
             'p_no',
-            'u_price',
+            [
+                'attribute' => 'u_price',
+                'format' => ['decimal', 2]
+            ],
             'unit_no',
-            'budget',
-            't_budget',
-            'hos_lev',
+             [
+                'attribute' => 'budget',
+                'format' => ['decimal', 2]
+            ],
+             [
+                'attribute' => 't_budget',
+                'format' => ['decimal', 2]
+            ],
+             ['attribute' => 'hos_lev',
+                'value' => $model->csp->sp_name,
+            ],
             't_build',
             'reason',
             'l_time',
-            'pop',
-            'opd_visit',
-            'active_bed',
-            'SUM_AdjRw',
+            [
+                'attribute' => 'pop',
+                'format' => ['decimal', 0]
+            ],
+            [
+                'attribute' => 'opd_visit',
+                'format' => ['decimal', 2]
+            ],
+            
+            [
+                'attribute' => 'active_bed',
+                'format' => ['decimal', 2]
+            ],
+            
+            [
+                'attribute' => 'SUM_AdjRw',
+                'format' => ['decimal', 2]
+            ],
             'EC',
             'ES',
             'PCC',
