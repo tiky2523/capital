@@ -27,7 +27,8 @@
         "kartik-v/yii2-widgets": "*",
         "kartik-v/yii2-number": "@dev",
         "kartik-v/yii2-widget-datepicker": "dev-master",
-        "kartik-v/yii2-widget-datepicker": "*"
+        "kartik-v/yii2-widget-datepicker": "*",
+        "dmstr/yii2-adminlte-asset": "2.*"
         
         
     },
