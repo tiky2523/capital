@@ -34,10 +34,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'bud_type',
-              
+  
             'f_year',
             'd_type',
-            //'hcode',
+            'hcode',
             [
                 'attribute' => 'hname',
                 'value' => $model->chos->hospital,
@@ -60,30 +60,18 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'unit_no',
             
-            [
-                'attribute' => 'b_binding1',
-                'format' => ['decimal', 2]
-            ],
+            ['attribute' => 'b_binding1','format' => ['decimal', 2] ],
             
-            [
-                'attribute' => 'b_binding2',
-                'format' => ['decimal', 2]
-            ],
+            ['attribute' => 'b_binding2','format' => ['decimal', 2] ],
             
-            [
-                'attribute' => 'b_binding3',
-                'format' => ['decimal', 2]
-            ],
+            ['attribute' => 'b_binding3','format' => ['decimal', 2] ],
             
             [
                 'attribute' => 't_budget',
                 'format' => ['decimal', 2]
             ],
             'b_locate',
-            [
-                'attribute' => 'amphur',
-                'value' => $model->amp->AMPHUR_NAME,
-            ],
+            ['attribute' => 'amphur','value' => $model->amp->AMPHUR_NAME,],
                 [
                 'attribute' => 'tumbon',
                 'value' => $model->dist->DISTRICT_NAME,

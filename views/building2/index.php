@@ -28,31 +28,31 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'id_building',
             'bud_type',
-                        'f_year',
-            'd_type',
-            'hmain',
+            'f_year',
+            //'d_type',
+            //'hmain',
             //'hcode',
             [
                 'attribute'=>'hname',
                 'value'=>'chos.hospital',
             ],
-            [
-                'attribute'=>'amphur',
-                'value'=>'amp.AMPHUR_NAME',
-            ],
-            [
-                'attribute'=>'tumbon',
-                'value'=>'dist.DISTRICT_NAME',
-            ],
-            'rank_cup',
-            'rank_sso',
-            'rank_hos',
-            'rank_CR',
+            //[
+                //'attribute'=>'amphur',
+                //'value'=>'amp.AMPHUR_NAME',
+            //],
+            //[
+                //'attribute'=>'tumbon',
+                //'value'=>'dist.DISTRICT_NAME',
+            //],
+            //'rank_cup',
+            //'rank_sso',
+            //'rank_hos',
+            //'rank_CR',
             'b_list',
-            [
-                'attribute'=>'p_type',
-                'value'=>'cbuild2.s_name',
-            ],
+            //[
+                //'attribute'=>'p_type',
+                //'value'=>'cbuild2.s_name',
+            //],
             //'p_no',
             [
                 'attribute'=>'u_price',
@@ -60,42 +60,42 @@ $this->params['breadcrumbs'][] = $this->title;
                 
             ],
             'unit_no',
-            [
-                'attribute'=>'budget',
-                'format' => ['decimal', 2]
+            //[
+                //'attribute'=>'budget',
+                //'format' => ['decimal', 2]
                 
-            ],
+            //],
             [
                 'attribute'=>'t_budget',
                 'format' => ['decimal', 2]
                 
             ],
-            'hos_lev',
-            't_build',
-            'reason',
-            'l_time',
-             [
-                'attribute'=>'pop',
-                'format' => ['decimal', 0]
+            //'hos_lev',
+            //'t_build',
+            //'reason',
+            //'l_time',
+             //[
+                //'attribute'=>'pop',
+                //'format' => ['decimal', 0]
                 
-            ],
-            [
-                'attribute'=>'active_bed',
-                'format' => ['decimal', 2]
+            //],
+            //[
+                //'attribute'=>'active_bed',
+                //'format' => ['decimal', 2]
                 
-            ],
+            //],
             
-            [
-                'attribute'=>'SUM_AdjRw',
-                'format' => ['decimal', 2]
+            //[
+                //'attribute'=>'SUM_AdjRw',
+                //'format' => ['decimal', 2]
                 
-            ],
-            'EC',
-            'ES',
-            'PCC',
-            'Famine',
-            'new_b',
-            'personels',
+            //],
+            //'EC',
+            //'ES',
+            //'PCC',
+            //'Famine',
+            //'new_b',
+            //'personels',
             'd_update',
 
             ['class' => 'yii\grid\ActionColumn'],

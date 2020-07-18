@@ -28,23 +28,23 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'bud_type',
             'f_year',
-            'd_type',
+            //'d_type',
             //'hcode',
             [
                 'attribute'=>'hname',
                 'value'=>'chos.hospital',
             ],
-            'rank_cup',
-            'rank_sso',
-            'rank_hos',
-            'rank_CR',
+            //'rank_cup',
+            //'rank_sso',
+            //'rank_hos',
+            //'rank_CR',
             'b_list',
-            [
-                'attribute'=>'b_type',
-                'value'=>'cbuild.s_name',
-            ],
-            'p_type',
-            'p_no',
+            //[
+                //'attribute'=>'b_type',
+                //'value'=>'cbuild.s_name',
+            //],
+            //'p_type',
+            //'p_no',
             [
                 'attribute'=>'u_price',
                 'format' => ['decimal', 2]
@@ -60,42 +60,42 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => ['decimal', 2]
                 
             ],
-            'b_locate',
-            [
-                'attribute'=>'amphur',
-                'value'=>'amp.AMPHUR_NAME',
-            ],
-            [
-                'attribute'=>'tumbon',
-                'value'=>'dist.DISTRICT_NAME',
-            ],
+            //'b_locate',
+            //[
+                //'attribute'=>'amphur',
+                //'value'=>'amp.AMPHUR_NAME',
+            //],
+            //[
+                //'attribute'=>'tumbon',
+                //'value'=>'dist.DISTRICT_NAME',
+            //],
             
-            'hos_lev',
-            't_build',
-            'reason',
-            'l_time',
-            [
-                'attribute'=>'pop',
-                'format' => ['decimal', 0]
+            //'hos_lev',
+            //'t_build',
+            //'reason',
+            //'l_time',
+            //[
+               // 'attribute'=>'pop',
+               // 'format' => ['decimal', 0]
                 
-            ],
-            [
-                'attribute'=>'active_bed',
-                'format' => ['decimal', 2]
+            //],
+            //[
+               // 'attribute'=>'active_bed',
+               // 'format' => ['decimal', 2]
                 
-            ],
+            //],
             
-            [
-                'attribute'=>'SUM_AdjRw',
-                'format' => ['decimal', 2]
+            //[
+                //'attribute'=>'SUM_AdjRw',
+                //'format' => ['decimal', 2]
                 
-            ],
-            'EC',
-            'ES',
-            'PCC',
-            'Famine',
-            'new_b',
-            'personels',
+            //],
+            //'EC',
+            //'ES',
+            //'PCC',
+            //'Famine',
+            //'new_b',
+            //'personels',
             'd_update',
 
             ['class' => 'yii\grid\ActionColumn'],

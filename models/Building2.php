@@ -118,7 +118,7 @@ class Building2 extends \yii\db\ActiveRecord
         return $this->hasone(CSp::className(), ['code_sp'=>'hos_lev']);
     }
     public function getCbuild2(){
-        return $this->hasone(CBuild2::className(), ['code_b'=>'b_type']);
+        return $this->hasone(CBuild2::className(), ['code_b'=>'p_type']);
     }
     public function getDist(){
         return $this->hasone(Districts::className(), ['DISTRICT_ID'=>'tumbon']);
