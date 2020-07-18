@@ -84,7 +84,7 @@ class Building extends \yii\db\ActiveRecord
             'bud_type' => 'ประเภทงบ',
             'f_year' => 'ปีงบประมาณที่จะส่งคำขอ',
             'd_type' => 'ประเภทหน่วยงาน',
-            'hcode' => 'รหัสหน่วยงาน 5 หลัก สนย.',
+            'hcode' => 'รหัสหน่วยงาน 5 หลัก',
             'hname' => 'ชื่อหน่วยงาน',
             'rank_cup' => 'ลำดับ CUP',
             'rank_sso' => 'ลำดับ กลุ่มสสอ.',
