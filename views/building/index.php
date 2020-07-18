@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use kartik\export\ExportMenu;
+use yii\bootstrap\Modal;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\BuildingSearch */
@@ -20,6 +21,8 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
     <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+    
+       
     <div class="panel panel-default">
         <div class="panel-heading"><i class="glyphicon glyphicon-list-alt"></i>รายการสิ่งก่อสร้าง</div>
         <div class="panel-body">
