@@ -46,6 +46,9 @@ class BuildingSearch extends Building
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination'=>[
+                'pagesize'=>15
+            ]
         ]);
 
         $this->load($params);

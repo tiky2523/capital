@@ -11,6 +11,9 @@ use yii\bootstrap\Modal;
 
 $this->title = 'คำขอสิ่งก่อสร้าง';
 $this->params['breadcrumbs'][] = $this->title;
+echo ExportMenu::widget([
+    'dataProvider' => $dataProvider
+]);
 ?>
 <div class="building-index">
 
@@ -33,7 +36,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filterModel' => $searchModel,
                 //........
                 'panel'=>[
-                    'before'=>' '
+                    'before'=>'รายงานรายการสิ่งก่อสร้าง',
+                    'after'=>'ประมวลผล ณ '.date('Y-m-d H:i:s'),
                 ],
                 //.........
                 'columns' => [

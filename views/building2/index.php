@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use kartik\grid\GridView;
+use kartik\export\ExportMenu;
+use yii\bootstrap\Modal;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\Building2Search */
@@ -9,6 +11,9 @@ use kartik\grid\GridView;
 
 $this->title = 'คำขอครุภัณฑ์';
 $this->params['breadcrumbs'][] = $this->title;
+echo ExportMenu::widget([
+    'dataProvider' => $dataProvider
+]);
 ?>
 <div class="building2-index">
 
@@ -29,7 +34,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filterModel' => $searchModel,
                 //........
                 'panel'=>[
-                    'before'=>' '
+                    'before'=>'รายงานรายการครุภัณฑ์',
+                    'after'=>'ประมวลผล ณ '.date('Y-m-d H:i:s'),
                 ],
                 //.........
                 'columns' => [
