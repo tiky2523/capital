@@ -1,11 +1,31 @@
 <?php
 use yii\helpers\Url;
 use yii\helpers\Html;
+use dektrium\user\models\User;
+use yii\bootstrap\Nav;
 ?>
 
 <aside class="main-sidebar">
 
     <section class="sidebar">
+        <?=
+        Nav::widget(
+                [
+                    'encodeLabels' => false,
+                    'options' => ['class' => 'sidebar-menu'],
+                    'items' => ['<li class="header"></li>', Yii::$app->user->isGuest ?
+                                ['label' => '<i class="glyphicon glyphicon-log-in"></i>'
+                            . ' เข้าสู่ระบบ', 'url' => ['/user/security/login']] :
+                                ['label' => '<i class="glyphicon glyphicon-user"></i>'
+                            . ' (' . Yii::$app->user->identity->username . ')', 'items' => [
+                                ['label' => 'เปลี่ยนข้อมูล', 'url' => ['/user/settings/account']],
+                                ['label' => 'Logout', 'url' => ['/user/security/logout'],
+                                    'linkOptions' => ['data-method' => 'post']],
+                            ]],
+                    ],
+                ]
+        );
+        ?>
         <ul class="sidebar-menu">
             <li class="header"><h5><div class="label label-default">
                     รายการคำขอ</div></h5></li>
