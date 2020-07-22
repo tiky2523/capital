@@ -44,9 +44,14 @@ use yii\bootstrap\Nav;
                                 ตั้งค่าตำบล</span><small class="label pull-right bg-aqua"></small>
                         </a>
                     </li>
-                    <li><a href="<?php echo Url::to(['csp/index']); ?>">
+                    <li><a href="<?php echo Url::to(['cbuild/index']); ?>">
                             <i class="fa fa-circle text-red"></i> 
-                            <span>ตั้งค่าระดับสถานบริการ</span><small class="label pull-right bg-aqua"></small>
+                            <span>ตั้งค่าประเภทสิ่งก่อสร้าง</span><small class="label pull-right bg-aqua"></small>
+                        </a>
+                    </li> 
+                    <li><a href="<?php echo Url::to(['cbuild2/index']); ?>">
+                            <i class="fa fa-circle text-red"></i> 
+                            <span>ตั้งค่าประเภทครุภัณฑ์</span><small class="label pull-right bg-aqua"></small>
                         </a>
                     </li> 
                     <li><a href="<?php echo Url::to(['chos/index']); ?>">
@@ -69,7 +74,9 @@ use yii\bootstrap\Nav;
                             <i class="fa fa-circle-o text-red">
                                 <span>คำขอสิ่งก่อสร้าง
                                 </span>
-                                <small class="label pull-right bg-aqua"></small> 
+                                <small class="label pull-right bg-aqua">
+                                    
+                                </small> 
                             </i>
                         </a>
                         <a href="<?php echo Url::to(['building2/index']);?>">

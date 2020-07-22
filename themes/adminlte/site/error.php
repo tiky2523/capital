@@ -9,6 +9,7 @@ use yii\helpers\Html;
 
 $this->title = $name;
 ?>
+
 <section class="content">
 
     <div class="error-page">
