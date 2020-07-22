@@ -6,7 +6,6 @@ use yii\bootstrap\Nav;
 ?>
 
 <aside class="main-sidebar">
-
     <section class="sidebar">
         <?=
         Nav::widget(
@@ -26,6 +25,43 @@ use yii\bootstrap\Nav;
                 ]
         );
         ?>
+        <br><hr/>
+        <ul class="sidebar-menu">
+            <li class="treeview">
+                <a href="#">
+                    <i class="glyphicon glyphicon-cog"></i> <span>ข้อมูลพื้นฐาน</span>
+                    <i class="fa pull-right fa-angle-down"></i>
+                </a>
+                    <li><a href="<?php echo Url::to(['amphures/index']); ?>">
+                            <i class="fa fa-circle text-yellow"></i> 
+                            <span>
+                                ตั้งค่าอำเภอ</span><small class="label pull-right bg-aqua"></small>
+                        </a>
+                    </li>
+                    <li><a href="<?php echo Url::to(['districts/index']); ?>">
+                            <i class="fa fa-circle text-yellow"></i> 
+                            <span>
+                                ตั้งค่าตำบล</span><small class="label pull-right bg-aqua"></small>
+                        </a>
+                    </li>
+                    <li><a href="<?php echo Url::to(['csp/index']); ?>">
+                            <i class="fa fa-circle text-red"></i> 
+                            <span>ตั้งค่าระดับสถานบริการ</span><small class="label pull-right bg-aqua"></small>
+                        </a>
+                    </li> 
+                    <li><a href="<?php echo Url::to(['chos/index']); ?>">
+                            <i class="fa fa-circle text-yellow"></i> 
+                            <span>ตั้งค่ารหัสสถานบริการ</span><small class="label pull-right bg-aqua"></small>
+                        </a>
+                    </li>
+                    <li><a href="<?php echo Url::to(['admin/assignment']); ?>">
+                            <i class="fa fa-circle text-red"></i> 
+                            <span>กำหนดสิทธิ์</span><small class="label pull-right bg-aqua"></small>
+                        </a>
+                    </li>
+                    
+                </ul>
+           </ul>
         <ul class="sidebar-menu">
             <li class="header"><h5><div class="label label-default">
                     รายการคำขอ</div></h5></li>
@@ -44,10 +80,14 @@ use yii\bootstrap\Nav;
                             </i>
                         </a>
                     </li>
+        </ul>
+        
+        <ul class="sidebar-menu">
+        
             <li class="header"><h5><div class="label label-default">
                     รายงานคำของบ</div></h5></li>
-                    
         </ul>
+        
     </section>
 
 </aside>
