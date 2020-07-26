@@ -8,9 +8,9 @@ use yii\helpers\Html;
    <?= Html::a('รายงานสรุปจำนวนรายการสิ่งก่อสร้าง และงบประมาณ จำแนกรายอำเภอ',['report/report1'])?>
 </p>
 <p>
-   <?= Html::a('รายงานสรุปจำนวนรายการสิ่งก่อสร้าง',['report/report1'])?>
+   <?= Html::a('รายงานXXX',['report/report1'])?>
 </p>
 <p>
-   <?= Html::a('รายงานสรุปจำนวนรายการสิ่งก่อสร้าง',['report/report1'])?>
+   <?= Html::a('รายงานXXX',['report/report1'])?>
 </p>
 

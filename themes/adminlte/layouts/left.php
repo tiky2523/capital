@@ -102,7 +102,7 @@ use yii\bootstrap\Nav;
                                 </small> 
                             </i>
                         </a>
-                        <a href="<?php echo Url::to(['report/index']);?>">
+                        <a href="<?php echo Url::to(['report2/index']);?>">
                             <i class="fa fa-circle text-blue">
                                 <span>รายงานเกี่ยวกับครุภัณฑ์
                                 </span>
