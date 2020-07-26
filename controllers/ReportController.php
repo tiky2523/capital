@@ -10,12 +10,15 @@ class ReportController extends \yii\web\Controller
         return $this->render('index');
     }
     public function actionReport1(){
-        $sql="SELECT building.f_year, building.amphur, 
-            Count(building.id_building) AS จำนวนรายการ, 
-            Sum(building.t_budget) AS ผลรวมงบประมาณ
-        FROM building
-        GROUP BY building.f_year, building.amphur
-        ORDER BY building.f_year, building.amphur;";
+        $sql="SELECT building.f_year, 
+        building.bud_type, 
+        building.amphur, 
+        amphures.AMPHUR_NAME, 
+        Count(building.id_building) AS จำนวนรายการที่ขอ, 
+        Sum(building.t_budget) AS จำนวนงบประมาณ
+        FROM building LEFT JOIN amphures ON building.amphur = amphures.AMPHUR_ID
+        GROUP BY building.f_year, building.bud_type, building.amphur, amphures.AMPHUR_NAME
+        ORDER BY building.f_year, building.amphur, amphures.AMPHUR_NAME;";
         //$rawData= \yii::$app->db->createCommand($sql)->queryAll();
         
         //print_r($rawData);
