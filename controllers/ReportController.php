@@ -38,43 +38,21 @@ class ReportController extends \yii\web\Controller
     }
     
     public function actionReport3 ($amphur) {
-        $sql = "SELECT building.bud_type, 
+        $sql = "SELECT 
+            building.bud_type, 
             building.f_year, 
             building.d_type, 
             building.hcode, 
             building.hname, 
             building.rank_cup, 
-            building.rank_sso, 
-            building.rank_hos, 
-            building.rank_CR, 
             building.b_list, 
-            building.b_type, 
-            building.p_type, 
             building.p_no, 
             building.u_price, 
             building.unit_no, 
-            building.b_binding1, 
-            building.b_binding2, 
-            building.b_binding3, 
             building.t_budget, 
             building.b_locate, 
             building.amphur, 
             building.tumbon, 
-            building.hos_lev, 
-            building.t_build, 
-            building.reason, 
-            building.l_time, 
-            building.pop, 
-            building.opd_visit, 
-            building.active_bed, 
-            building.SUM_AdjRw, 
-            building.EC, 
-            building.ES, 
-            building.PCC, 
-            building.Famine, 
-            building.new_b, 
-            building.personels, 
-            building.d_update
             FROM building WHERE building.amphur=$amphur";
     try{
           $rawData= \yii::$app->db->createCommand($sql)->queryAll();
