@@ -41,12 +41,10 @@ class ReportController extends \yii\web\Controller
         $sql = "SELECT 
             building.bud_type, 
             building.f_year, 
-            building.d_type, 
             building.hcode, 
             building.hname, 
             building.rank_cup, 
             building.b_list, 
-            building.p_no, 
             building.u_price, 
             building.unit_no, 
             building.t_budget, 
