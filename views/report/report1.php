@@ -35,7 +35,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         'value'=>function($model){
                             $amphur=$model['amphur'];
                             $AMPHUR_NAME=$model['AMPHUR_NAME'];
-                            return Html::a(Html::encode($AMPHUR_NAME),['report/report3','amphur'=>$amphur]);
+                            return Html::a(Html::encode($AMPHUR_NAME),
+                                    ['report/report3','amphur'=>$amphur]);
                         }
                     ],
                     [

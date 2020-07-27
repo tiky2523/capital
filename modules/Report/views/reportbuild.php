@@ -5,8 +5,6 @@ use yii\helpers\Html;
 $this->title = 'รายการรายอำเภอ';
 $this->params ['breadcrambs'][]=['label'=>'รายงาน','url'=>['report/index']];
 $this->params['breadcrumbs'][] = $this->title;
-$datas =$dataProvider->getModels();
-
 
     echo GridView::widget([
         'dataProvider' => $dataProvider,

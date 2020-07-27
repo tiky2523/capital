@@ -1,6 +1,7 @@
 <?php
 
 namespace app\controllers;
+use yii\data\ArrayDataProvider;
 use yii;
 
 class ReportController extends \yii\web\Controller
@@ -37,7 +38,7 @@ class ReportController extends \yii\web\Controller
       ]);
     }
     
-    public function actionReport3 ($amphur) {
+    public function actionReport3 ($amphur=null) {
         $sql = "SELECT 
             building.bud_type, 
             building.f_year, 
@@ -62,8 +63,13 @@ class ReportController extends \yii\web\Controller
           'pagination'=>FALSE,
       ]);
       return $this->render('report3',[
-          'dataProvider'=>$dataProvider
+          'dataProvider'=>$dataProvider,
+          'rawData'=>$rawdData,
+          'sql'=>$sql,
+          'amphur'=>$amphur
       ]);
     }
+    
+   
 
 }
