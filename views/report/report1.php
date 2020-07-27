@@ -25,19 +25,19 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                     [
                         'attribute'=>'amphur',
-                        'header'=>'รหัสอำเภอ',
+                        'label'=>'รหัสอำเภอ',
+                        'format'=>'raw',
+                        'value'=>function($model){
+                            $amphur=$model['amphur'];
+                            return Html::a(Html::encode($amphur),
+                                    ['report/report3','amphur'=>$amphur]);
+                        }
                        
                     ],
                     [
                         'attribute'=>'AMPHUR_NAME',
                         'header'=>'ชื่ออำเภอ',
-                        'format'=>'raw',
-                        'value'=>function($model){
-                            $amphur=$model['amphur'];
-                            $AMPHUR_NAME=$model['AMPHUR_NAME'];
-                            return Html::a(Html::encode($AMPHUR_NAME),
-                                    ['report/report3','amphur'=>$amphur]);
-                        }
+                        
                     ],
                     [
                         'attribute'=>'จำนวนรายการที่ขอ',

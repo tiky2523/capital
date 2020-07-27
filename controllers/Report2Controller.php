@@ -37,7 +37,7 @@ class Report2Controller extends \yii\web\Controller
           'dataProvider'=>$dataProvider
       ]);
     }
-    public function actionReport3 ($amphur=null) {
+    public function actionReport3 ($amphur) {
         $sql = "SELECT 
             building2.bud_type, 
             building2.f_year, 
@@ -48,8 +48,8 @@ class Report2Controller extends \yii\web\Controller
             building2.u_price, 
             building2.unit_no, 
             building2.t_budget, 
-            building.amphur, 
-            building.tumbon, 
+            building2.amphur, 
+            building2.tumbon, 
             FROM building WHERE building.amphur=$amphur";
     try{
           $rawData= \yii::$app->db->createCommand($sql)->queryAll();
@@ -64,7 +64,6 @@ class Report2Controller extends \yii\web\Controller
           'dataProvider'=>$dataProvider,
           'rawData'=>$rawdData,
           'sql'=>$sql,
-          'amphur'=>$amphur
       ]);
     }
 }
