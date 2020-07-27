@@ -37,7 +37,7 @@ class Report2Controller extends \yii\web\Controller
           'dataProvider'=>$dataProvider
       ]);
     }
-    public function actionReport3 ($amphur) {
+    public function actionReport3 ($amphur=null) {
         $sql = "SELECT 
             building2.bud_type, 
             building2.f_year, 

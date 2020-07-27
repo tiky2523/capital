@@ -32,6 +32,8 @@ use yii\bootstrap\Nav;
                     <i class="glyphicon glyphicon-cog"></i> <span>ข้อมูลพื้นฐาน</span>
                     <i class="fa pull-right fa-angle-down"></i>
                 </a>
+                <ul class="treeview-menu">
+               
                     <li><a href="<?php echo Url::to(['amphures/index']); ?>">
                             <i class="fa fa-circle text-yellow"></i> 
                             <span>
@@ -65,10 +67,12 @@ use yii\bootstrap\Nav;
                         </a>
                     </li>
                     
-                </ul>
+                
            </ul>
+        </ul>
         <ul class="sidebar-menu">
-            <li class="header"><h5><div class="label label-default">
+            <li class="treeview">
+                <li class="header"><h5><div class="label label-default">
                     รายการคำขอ</div></h5></li>
                     <li><a href="<?php echo Url::to(['building/index']);?>">
                             <i class="fa fa-circle-o text-red">
@@ -87,6 +91,7 @@ use yii\bootstrap\Nav;
                             </i>
                         </a>
                     </li>
+        
         </ul>
         
         <ul class="sidebar-menu">
