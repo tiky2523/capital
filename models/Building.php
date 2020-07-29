@@ -1,6 +1,11 @@
 <?php
 
 namespace app\models;
+use app\models\CHos;
+use app\models\CSp;
+use app\models\CBuild;
+use app\models\Districts;
+use app\models\Amphures;
 
 use Yii;
 
