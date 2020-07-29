@@ -51,8 +51,8 @@ class ReportController extends \yii\web\Controller
             building.t_budget, 
             building.b_locate, 
             building.amphur, 
-            building.tumbon, 
-            FROM building WHERE building.amphur=$amphur";
+            building.tumbon 
+            FROM building WHERE building.amphur='$amphur'";
     try{
           $rawData= \yii::$app->db->createCommand($sql)->queryAll();
       }  catch(\yii\dbException $e){
@@ -66,6 +66,7 @@ class ReportController extends \yii\web\Controller
           'dataProvider'=>$dataProvider,
           'rawData'=>$rawdData,
           'sql'=>$sql,
+          'amphur'=>$amphur
           
       ]);
     }
